@@ -1,0 +1,83 @@
+CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:21
+
+               Filename: C:\Users\Jean\Documents\GitHub\TemperatureController\main.lst
+
+               ROM used: 94 bytes (0%)
+                         Largest free fragment is 32674
+               RAM used: 6 (0%) at main() level
+                         7 (0%) worst case
+               Stack:    1 locations
+
+*
+0000:  GOTO   002A
+.................... #include <18f452.h> 
+.................... //////// Standard Header file for the PIC18F452 device //////////////// 
+.................... #device PIC18F452 
+.................... #list 
+....................  
+.................... #use delay(clock=20000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  07
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    0028
+000E:  MOVLW  06
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  7B
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  DECFSZ FEF,F
+0026:  BRA    000E
+0028:  RETLW  00
+.................... #fuses HS,NOWDT,PUT 
+....................  
+.................... main() 
+.................... {  
+002A:  CLRF   FF8
+002C:  BCF    FD0.7
+002E:  CLRF   FEA
+0030:  CLRF   FE9
+0032:  BSF    FC1.0
+0034:  BSF    FC1.1
+0036:  BSF    FC1.2
+0038:  BCF    FC1.3
+.................... delay_ms(500); 
+003A:  MOVLW  02
+003C:  MOVWF  06
+003E:  MOVLW  FA
+0040:  MOVWF  07
+0042:  RCALL  0004
+0044:  DECFSZ 06,F
+0046:  BRA    003E
+.................... while (true) 
+.................... { 
+.................... output_toggle(PIN_D4); 
+0048:  BCF    F95.4
+004A:  BTG    F8C.4
+.................... delay_ms (500); 
+004C:  MOVLW  02
+004E:  MOVWF  06
+0050:  MOVLW  FA
+0052:  MOVWF  07
+0054:  RCALL  0004
+0056:  DECFSZ 06,F
+0058:  BRA    0050
+.................... } 
+005A:  BRA    0048
+.................... } 
+005C:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2200   HS NOOSCSEN
+   Word  2: 0E0E   BROWNOUT WDT128 NOWDT BORV20 PUT
+   Word  3: 0100   CCP2C1
+   Word  4: 0081   STVREN NODEBUG NOLVP
+   Word  5: C00F   NOPROTECT NOCPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTB NOWRTC
+   Word  7: 400F   NOEBTR NOEBTRB
