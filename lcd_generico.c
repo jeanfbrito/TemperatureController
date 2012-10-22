@@ -26,8 +26,8 @@ cleber.toss.hoffmann@gmail.com
 
 */
 //
-#byte PORTB=0x06
-#byte TRISB=0x86
+#byte PORTB=0xF81
+#byte TRISB=0xF93
 
 //Constantes
 #define set_bit0 0x01

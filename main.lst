@@ -1,77 +1,394 @@
-CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:21
+CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:56
 
                Filename: C:\Users\Jean\Documents\GitHub\TemperatureController\main.lst
 
-               ROM used: 94 bytes (0%)
-                         Largest free fragment is 32674
+               ROM used: 468 bytes (1%)
+                         Largest free fragment is 32300
                RAM used: 6 (0%) at main() level
-                         7 (0%) worst case
-               Stack:    1 locations
+                         11 (1%) worst case
+               Stack:    2 locations
 
 *
-0000:  GOTO   002A
+0000:  GOTO   018C
 .................... #include <18f452.h> 
 .................... //////// Standard Header file for the PIC18F452 device //////////////// 
 .................... #device PIC18F452 
 .................... #list 
 ....................  
 .................... #use delay(clock=20000000) 
-0004:  CLRF   FEA
-0006:  MOVLW  07
-0008:  MOVWF  FE9
-000A:  MOVF   FEF,W
-000C:  BZ    0028
-000E:  MOVLW  06
-0010:  MOVWF  01
-0012:  CLRF   00
-0014:  DECFSZ 00,F
-0016:  BRA    0014
-0018:  DECFSZ 01,F
-001A:  BRA    0012
-001C:  MOVLW  7B
-001E:  MOVWF  00
-0020:  DECFSZ 00,F
-0022:  BRA    0020
-0024:  DECFSZ FEF,F
-0026:  BRA    000E
-0028:  RETLW  00
+001A:  CLRF   FEA
+001C:  MOVLW  07
+001E:  MOVWF  FE9
+0020:  MOVF   FEF,W
+0022:  BZ    003E
+0024:  MOVLW  06
+0026:  MOVWF  01
+0028:  CLRF   00
+002A:  DECFSZ 00,F
+002C:  BRA    002A
+002E:  DECFSZ 01,F
+0030:  BRA    0028
+0032:  MOVLW  7B
+0034:  MOVWF  00
+0036:  DECFSZ 00,F
+0038:  BRA    0036
+003A:  DECFSZ FEF,F
+003C:  BRA    0024
+003E:  RETLW  00
+0040:  MOVLW  03
+0042:  SUBWF  06,F
+0044:  BNC   0058
+0046:  CLRF   FEA
+0048:  MOVLW  06
+004A:  MOVWF  FE9
+004C:  MOVF   FEF,W
+004E:  BZ    0058
+0050:  BRA    0054
+0052:  BRA    0054
+0054:  DECFSZ FEF,F
+0056:  BRA    0052
+0058:  RETLW  00
 .................... #fuses HS,NOWDT,PUT 
+.................... #include <lcd_generico.c> 
+.................... /* 
+....................  
+.................... Função para utilização do display LCD para qualquer tamanho 
+....................  
+....................    inic_display();                        função para configurar e inicializar o display 
+....................    display(char tipo,char dado);          função para enviar um comando ou um dado para o display 
+....................    mostra(char dado);                     funçao para enviar um dado para o display 
+....................  
+....................    Configuração dos pinos do microcontrolador 
+....................  
+....................    RB0 = enable display 
+....................    RB1 = RS 
+....................    RB2 = RW 
+....................    RB3 = 
+....................    RB4 = DB4 
+....................    RB5 = DB5 
+....................    RB6 = DB6 
+....................    RB7 = DB7 
+....................  
+....................    Primeira linha = 0x80 
+....................    Segunda  linha = 0xC0 
+....................  
+....................  
+.................... Aprimorado por Cleber Toss Hoffmann 
+.................... cleber.toss.hoffmann@gmail.com 
+....................  
+.................... */ 
+.................... // 
+.................... #byte PORTB=0xF81 
+.................... #byte TRISB=0xF93 
+....................  
+.................... //Constantes 
+.................... #define set_bit0 0x01 
+.................... #define set_bit1 0x02 
+.................... #define set_bit2 0x04 
+....................  
+.................... #define clear_bit0 0xfe 
+.................... #define clear_bit1 0xfd 
+.................... #define clear_bit2 0xfb 
+....................  
+.................... void inic_display(); 
+....................  
+.................... #separate 
+.................... void display(char tipo,char dado); 
+....................  
+.................... #separate 
+.................... void mostra(char dado); 
+....................  
+.................... void inic_display() 
+.................... { 
+....................  TRISB =0x00; 
+*
+00D6:  CLRF   F93
+....................  delay_ms(50); 
+00D8:  MOVLW  32
+00DA:  MOVWF  07
+00DC:  RCALL  001A
+....................  
+....................  PORTB  = 0x30; 
+00DE:  MOVLW  30
+00E0:  MOVWF  F81
+....................  PORTB |= set_bit0; 
+00E2:  BSF    F81.0
+....................  delay_us(5); 
+00E4:  MOVLW  08
+00E6:  MOVWF  00
+00E8:  DECFSZ 00,F
+00EA:  BRA    00E8
+....................  PORTB &= clear_bit0; 
+00EC:  BCF    F81.0
+....................  delay_ms(25); 
+00EE:  MOVLW  19
+00F0:  MOVWF  07
+00F2:  RCALL  001A
+....................  
+....................  PORTB = 0x30; 
+00F4:  MOVLW  30
+00F6:  MOVWF  F81
+....................  PORTB |= set_bit0; 
+00F8:  BSF    F81.0
+....................  delay_us(5); 
+00FA:  MOVLW  08
+00FC:  MOVWF  00
+00FE:  DECFSZ 00,F
+0100:  BRA    00FE
+....................  PORTB &= clear_bit0; 
+0102:  BCF    F81.0
+....................  delay_ms(25); 
+0104:  MOVLW  19
+0106:  MOVWF  07
+0108:  RCALL  001A
+....................  
+....................  PORTB = 0x30; 
+010A:  MOVLW  30
+010C:  MOVWF  F81
+....................  PORTB |= set_bit0; 
+010E:  BSF    F81.0
+....................  delay_us(5); 
+0110:  MOVLW  08
+0112:  MOVWF  00
+0114:  DECFSZ 00,F
+0116:  BRA    0114
+....................  PORTB &= clear_bit0; 
+0118:  BCF    F81.0
+....................  delay_ms(25); 
+011A:  MOVLW  19
+011C:  MOVWF  07
+011E:  RCALL  001A
+....................  
+....................  PORTB = 0x30; 
+0120:  MOVLW  30
+0122:  MOVWF  F81
+....................  PORTB |= set_bit0; 
+0124:  BSF    F81.0
+....................  delay_us(5); 
+0126:  MOVLW  08
+0128:  MOVWF  00
+012A:  DECFSZ 00,F
+012C:  BRA    012A
+....................  PORTB &= clear_bit0; 
+012E:  BCF    F81.0
+....................  
+....................  delay_us(200); 
+0130:  MOVLW  C8
+0132:  MOVWF  06
+0134:  RCALL  0040
+....................  PORTB = 0x20; 
+0136:  MOVLW  20
+0138:  MOVWF  F81
+....................  PORTB |= set_bit0; 
+013A:  BSF    F81.0
+....................  delay_us(5); 
+013C:  MOVLW  08
+013E:  MOVWF  00
+0140:  DECFSZ 00,F
+0142:  BRA    0140
+....................  PORTB &= clear_bit0; 
+0144:  BCF    F81.0
+....................  
+....................  delay_us(200); 
+0146:  MOVLW  C8
+0148:  MOVWF  06
+014A:  RCALL  0040
+....................  display(0,0x28); 
+014C:  CLRF   08
+014E:  MOVLW  28
+0150:  MOVWF  09
+0152:  RCALL  005A
+....................  display(0,0x08); 
+0154:  CLRF   08
+0156:  MOVLW  08
+0158:  MOVWF  09
+015A:  RCALL  005A
+....................  display(0,0x01); 
+015C:  CLRF   08
+015E:  MOVLW  01
+0160:  MOVWF  09
+0162:  RCALL  005A
+....................  delay_ms(5); 
+0164:  MOVLW  05
+0166:  MOVWF  07
+0168:  RCALL  001A
+....................  display(0,0x06); 
+016A:  CLRF   08
+016C:  MOVLW  06
+016E:  MOVWF  09
+0170:  RCALL  005A
+....................  display(0,0x0c); 
+0172:  CLRF   08
+0174:  MOVLW  0C
+0176:  MOVWF  09
+0178:  RCALL  005A
+....................  
+.................... } 
+017A:  GOTO   01AC (RETURN)
+....................  
+....................  
+.................... /* display 
+....................    Envia um dado para o display. 
+....................    Se tipo=0, é um comando (RS=0) 
+....................    Se tipo=1, é um dado (RS=1) 
+.................... */ 
+.................... #separate 
+.................... void display(char tipo,char dado) 
+.................... { 
+....................  char temp; 
+....................  if(tipo == true) 
+*
+005A:  DECFSZ 08,W
+005C:  BRA    009E
+....................     { 
+....................      temp=(dado & 0xf0) | set_bit1; 
+005E:  MOVF   09,W
+0060:  ANDLW  F0
+0062:  IORLW  02
+0064:  MOVWF  0A
+....................      PORTB = temp; 
+0066:  MOVFF  0A,F81
+....................      PORTB |= set_bit0; 
+006A:  BSF    F81.0
+....................      delay_us(5); 
+006C:  MOVLW  08
+006E:  MOVWF  00
+0070:  DECFSZ 00,F
+0072:  BRA    0070
+....................      PORTB &= clear_bit0; 
+0074:  BCF    F81.0
+.................... //   delay_us(50); 
+....................      temp=(dado << 4) | set_bit1; 
+0076:  SWAPF  09,W
+0078:  MOVWF  00
+007A:  MOVLW  F0
+007C:  ANDWF  00,F
+007E:  MOVF   00,W
+0080:  IORLW  02
+0082:  MOVWF  0A
+....................      PORTB = temp; 
+0084:  MOVFF  0A,F81
+....................      PORTB |= set_bit0; 
+0088:  BSF    F81.0
+....................      delay_us(5); 
+008A:  MOVLW  08
+008C:  MOVWF  00
+008E:  DECFSZ 00,F
+0090:  BRA    008E
+....................      PORTB &= clear_bit0; 
+0092:  BCF    F81.0
+....................      delay_us(50); 
+0094:  MOVLW  53
+0096:  MOVWF  00
+0098:  DECFSZ 00,F
+009A:  BRA    0098
+....................  
+....................     } 
+....................  else 
+009C:  BRA    00D4
+....................     { 
+....................      temp=(dado & 0xf0); 
+009E:  MOVF   09,W
+00A0:  ANDLW  F0
+00A2:  MOVWF  0A
+....................      PORTB = temp; 
+00A4:  MOVFF  0A,F81
+....................      PORTB |= set_bit0; 
+00A8:  BSF    F81.0
+....................      delay_us(5); 
+00AA:  MOVLW  08
+00AC:  MOVWF  00
+00AE:  DECFSZ 00,F
+00B0:  BRA    00AE
+....................      PORTB &= clear_bit0; 
+00B2:  BCF    F81.0
+.................... //   delay_us(50); 
+....................      temp=(dado << 4); 
+00B4:  SWAPF  09,W
+00B6:  MOVWF  0A
+00B8:  MOVLW  F0
+00BA:  ANDWF  0A,F
+....................      PORTB = temp; 
+00BC:  MOVFF  0A,F81
+....................      PORTB |= set_bit0; 
+00C0:  BSF    F81.0
+....................      delay_us(5); 
+00C2:  MOVLW  08
+00C4:  MOVWF  00
+00C6:  DECFSZ 00,F
+00C8:  BRA    00C6
+....................      PORTB &= clear_bit0; 
+00CA:  BCF    F81.0
+....................      delay_us(50); 
+00CC:  MOVLW  53
+00CE:  MOVWF  00
+00D0:  DECFSZ 00,F
+00D2:  BRA    00D0
+....................     } 
+....................  
+.................... } 
+00D4:  RETLW  00
+....................  
+.................... #separate 
+.................... void mostra(char dado) 
+.................... { 
+....................  display(1,dado); 
+*
+017E:  MOVLW  01
+0180:  MOVWF  08
+0182:  MOVFF  07,09
+0186:  RCALL  005A
+.................... } 
+0188:  GOTO   01BC (RETURN)
 ....................  
 .................... main() 
 .................... {  
-002A:  CLRF   FF8
-002C:  BCF    FD0.7
-002E:  CLRF   FEA
-0030:  CLRF   FE9
-0032:  BSF    FC1.0
-0034:  BSF    FC1.1
-0036:  BSF    FC1.2
-0038:  BCF    FC1.3
+018C:  CLRF   FF8
+018E:  BCF    FD0.7
+0190:  CLRF   FEA
+0192:  CLRF   FE9
+0194:  BSF    FC1.0
+0196:  BSF    FC1.1
+0198:  BSF    FC1.2
+019A:  BCF    FC1.3
 .................... delay_ms(500); 
-003A:  MOVLW  02
-003C:  MOVWF  06
-003E:  MOVLW  FA
-0040:  MOVWF  07
-0042:  RCALL  0004
-0044:  DECFSZ 06,F
-0046:  BRA    003E
+019C:  MOVLW  02
+019E:  MOVWF  06
+01A0:  MOVLW  FA
+01A2:  MOVWF  07
+01A4:  RCALL  001A
+01A6:  DECFSZ 06,F
+01A8:  BRA    01A0
+.................... inic_display(); 
+01AA:  BRA    00D6
+....................  
 .................... while (true) 
 .................... { 
+.................... mostra("teste"); 
+01AC:  CLRF   06
+01AE:  MOVF   06,W
+01B0:  RCALL  0004
+01B2:  IORLW  00
+01B4:  BZ    01BE
+01B6:  INCF   06,F
+01B8:  MOVWF  07
+01BA:  BRA    017E
+01BC:  BRA    01AE
 .................... output_toggle(PIN_D4); 
-0048:  BCF    F95.4
-004A:  BTG    F8C.4
+01BE:  BCF    F95.4
+01C0:  BTG    F8C.4
 .................... delay_ms (500); 
-004C:  MOVLW  02
-004E:  MOVWF  06
-0050:  MOVLW  FA
-0052:  MOVWF  07
-0054:  RCALL  0004
-0056:  DECFSZ 06,F
-0058:  BRA    0050
+01C2:  MOVLW  02
+01C4:  MOVWF  06
+01C6:  MOVLW  FA
+01C8:  MOVWF  07
+01CA:  RCALL  001A
+01CC:  DECFSZ 06,F
+01CE:  BRA    01C6
 .................... } 
-005A:  BRA    0048
+01D0:  BRA    01AC
 .................... } 
-005C:  SLEEP 
+01D2:  SLEEP 
 
 Configuration Fuses:
    Word  1: 2200   HS NOOSCSEN

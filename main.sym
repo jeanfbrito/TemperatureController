@@ -4,14 +4,22 @@
 002     @SCRATCH
 003     @SCRATCH
 004     @SCRATCH
-006     main.@SCRATCH1
+006     @delay_us1.P1
+006     MAIN.@SCRATCH1
+007     mostra.dado
 007     @delay_ms1.P1
+008     display.tipo
+009     display.dado
+00A     display.temp
+00B     display.@SCRATCH1
+F81     PORTB
 F83     PSP_DATA
+F93     TRISB
 FBB-FBC CCP_2
 FBB     CCP_2_LOW
 FBC     CCP_2_HIGH
-FBE-FBF CCP_1
 FBE     CCP_1_LOW
+FBE-FBF CCP_1
 FBF     CCP_1_HIGH
 FE9-FEA @READ_PROGRAM_MEMORY.P1
 FE9-FEA @WRITE_PROGRAM_MEMORY.P2
@@ -19,9 +27,14 @@ FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-0004  @delay_ms1
-002A  main
-002A  @cinit
+001A  @delay_ms1
+0040  @delay_us1
+00D6  inic_display
+005A  display
+017E  mostra
+018C  MAIN
+0004  @const57
+018C  @cinit
 
 Project Directory:
     C:\Users\Jean\Documents\GitHub\TemperatureController\
@@ -29,6 +42,7 @@ Project Directory:
 Project Files:
     main.c
     ..\..\..\..\..\Program Files (x86)\PICC\devices\18f452.h
+    lcd_generico.c
 
 Units:
     C:\Users\Jean\Documents\GitHub\TemperatureController\main.c (main)
