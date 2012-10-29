@@ -1,53 +1,55 @@
-CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:56
+CCS PCH C Compiler, Version 4.057, 8241               29-out-12 21:09
 
                Filename: C:\Users\Jean\Documents\GitHub\TemperatureController\main.lst
 
-               ROM used: 468 bytes (1%)
-                         Largest free fragment is 32300
-               RAM used: 6 (0%) at main() level
-                         11 (1%) worst case
-               Stack:    2 locations
+               ROM used: 1918 bytes (6%)
+                         Largest free fragment is 30850
+               RAM used: 17 (1%) at main() level
+                         38 (2%) worst case
+               Stack:    3 locations
 
 *
-0000:  GOTO   018C
+0000:  GOTO   065C
 .................... #include <18f452.h> 
 .................... //////// Standard Header file for the PIC18F452 device //////////////// 
 .................... #device PIC18F452 
 .................... #list 
 ....................  
+.................... #device ADC=10 
 .................... #use delay(clock=20000000) 
-001A:  CLRF   FEA
-001C:  MOVLW  07
-001E:  MOVWF  FE9
-0020:  MOVF   FEF,W
-0022:  BZ    003E
-0024:  MOVLW  06
-0026:  MOVWF  01
-0028:  CLRF   00
-002A:  DECFSZ 00,F
-002C:  BRA    002A
-002E:  DECFSZ 01,F
-0030:  BRA    0028
-0032:  MOVLW  7B
-0034:  MOVWF  00
-0036:  DECFSZ 00,F
-0038:  BRA    0036
-003A:  DECFSZ FEF,F
-003C:  BRA    0024
-003E:  RETLW  00
-0040:  MOVLW  03
-0042:  SUBWF  06,F
-0044:  BNC   0058
-0046:  CLRF   FEA
-0048:  MOVLW  06
-004A:  MOVWF  FE9
-004C:  MOVF   FEF,W
-004E:  BZ    0058
-0050:  BRA    0054
-0052:  BRA    0054
-0054:  DECFSZ FEF,F
-0056:  BRA    0052
-0058:  RETLW  00
+*
+002C:  CLRF   FEA
+002E:  MOVLW  0D
+0030:  MOVWF  FE9
+0032:  MOVF   FEF,W
+0034:  BZ    0050
+0036:  MOVLW  06
+0038:  MOVWF  01
+003A:  CLRF   00
+003C:  DECFSZ 00,F
+003E:  BRA    003C
+0040:  DECFSZ 01,F
+0042:  BRA    003A
+0044:  MOVLW  7B
+0046:  MOVWF  00
+0048:  DECFSZ 00,F
+004A:  BRA    0048
+004C:  DECFSZ FEF,F
+004E:  BRA    0036
+0050:  RETLW  00
+0052:  MOVLW  03
+0054:  SUBWF  0C,F
+0056:  BNC   006A
+0058:  CLRF   FEA
+005A:  MOVLW  0C
+005C:  MOVWF  FE9
+005E:  MOVF   FEF,W
+0060:  BZ    006A
+0062:  BRA    0066
+0064:  BRA    0066
+0066:  DECFSZ FEF,F
+0068:  BRA    0064
+006A:  RETLW  00
 .................... #fuses HS,NOWDT,PUT 
 .................... #include <lcd_generico.c> 
 .................... /* 
@@ -102,129 +104,129 @@ CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:56
 .................... { 
 ....................  TRISB =0x00; 
 *
-00D6:  CLRF   F93
+00E8:  CLRF   F93
 ....................  delay_ms(50); 
-00D8:  MOVLW  32
-00DA:  MOVWF  07
-00DC:  RCALL  001A
+00EA:  MOVLW  32
+00EC:  MOVWF  0D
+00EE:  RCALL  002C
 ....................  
 ....................  PORTB  = 0x30; 
-00DE:  MOVLW  30
-00E0:  MOVWF  F81
+00F0:  MOVLW  30
+00F2:  MOVWF  F81
 ....................  PORTB |= set_bit0; 
-00E2:  BSF    F81.0
+00F4:  BSF    F81.0
 ....................  delay_us(5); 
-00E4:  MOVLW  08
-00E6:  MOVWF  00
-00E8:  DECFSZ 00,F
-00EA:  BRA    00E8
+00F6:  MOVLW  08
+00F8:  MOVWF  00
+00FA:  DECFSZ 00,F
+00FC:  BRA    00FA
 ....................  PORTB &= clear_bit0; 
-00EC:  BCF    F81.0
+00FE:  BCF    F81.0
 ....................  delay_ms(25); 
-00EE:  MOVLW  19
-00F0:  MOVWF  07
-00F2:  RCALL  001A
+0100:  MOVLW  19
+0102:  MOVWF  0D
+0104:  RCALL  002C
 ....................  
 ....................  PORTB = 0x30; 
-00F4:  MOVLW  30
-00F6:  MOVWF  F81
+0106:  MOVLW  30
+0108:  MOVWF  F81
 ....................  PORTB |= set_bit0; 
-00F8:  BSF    F81.0
+010A:  BSF    F81.0
 ....................  delay_us(5); 
-00FA:  MOVLW  08
-00FC:  MOVWF  00
-00FE:  DECFSZ 00,F
-0100:  BRA    00FE
+010C:  MOVLW  08
+010E:  MOVWF  00
+0110:  DECFSZ 00,F
+0112:  BRA    0110
 ....................  PORTB &= clear_bit0; 
-0102:  BCF    F81.0
+0114:  BCF    F81.0
 ....................  delay_ms(25); 
-0104:  MOVLW  19
-0106:  MOVWF  07
-0108:  RCALL  001A
+0116:  MOVLW  19
+0118:  MOVWF  0D
+011A:  RCALL  002C
 ....................  
 ....................  PORTB = 0x30; 
-010A:  MOVLW  30
-010C:  MOVWF  F81
+011C:  MOVLW  30
+011E:  MOVWF  F81
 ....................  PORTB |= set_bit0; 
-010E:  BSF    F81.0
+0120:  BSF    F81.0
 ....................  delay_us(5); 
-0110:  MOVLW  08
-0112:  MOVWF  00
-0114:  DECFSZ 00,F
-0116:  BRA    0114
+0122:  MOVLW  08
+0124:  MOVWF  00
+0126:  DECFSZ 00,F
+0128:  BRA    0126
 ....................  PORTB &= clear_bit0; 
-0118:  BCF    F81.0
+012A:  BCF    F81.0
 ....................  delay_ms(25); 
-011A:  MOVLW  19
-011C:  MOVWF  07
-011E:  RCALL  001A
+012C:  MOVLW  19
+012E:  MOVWF  0D
+0130:  RCALL  002C
 ....................  
 ....................  PORTB = 0x30; 
-0120:  MOVLW  30
-0122:  MOVWF  F81
+0132:  MOVLW  30
+0134:  MOVWF  F81
 ....................  PORTB |= set_bit0; 
-0124:  BSF    F81.0
+0136:  BSF    F81.0
 ....................  delay_us(5); 
-0126:  MOVLW  08
-0128:  MOVWF  00
-012A:  DECFSZ 00,F
-012C:  BRA    012A
+0138:  MOVLW  08
+013A:  MOVWF  00
+013C:  DECFSZ 00,F
+013E:  BRA    013C
 ....................  PORTB &= clear_bit0; 
-012E:  BCF    F81.0
+0140:  BCF    F81.0
 ....................  
 ....................  delay_us(200); 
-0130:  MOVLW  C8
-0132:  MOVWF  06
-0134:  RCALL  0040
+0142:  MOVLW  C8
+0144:  MOVWF  0C
+0146:  RCALL  0052
 ....................  PORTB = 0x20; 
-0136:  MOVLW  20
-0138:  MOVWF  F81
+0148:  MOVLW  20
+014A:  MOVWF  F81
 ....................  PORTB |= set_bit0; 
-013A:  BSF    F81.0
+014C:  BSF    F81.0
 ....................  delay_us(5); 
-013C:  MOVLW  08
-013E:  MOVWF  00
-0140:  DECFSZ 00,F
-0142:  BRA    0140
+014E:  MOVLW  08
+0150:  MOVWF  00
+0152:  DECFSZ 00,F
+0154:  BRA    0152
 ....................  PORTB &= clear_bit0; 
-0144:  BCF    F81.0
+0156:  BCF    F81.0
 ....................  
 ....................  delay_us(200); 
-0146:  MOVLW  C8
-0148:  MOVWF  06
-014A:  RCALL  0040
+0158:  MOVLW  C8
+015A:  MOVWF  0C
+015C:  RCALL  0052
 ....................  display(0,0x28); 
-014C:  CLRF   08
-014E:  MOVLW  28
-0150:  MOVWF  09
-0152:  RCALL  005A
+015E:  CLRF   1B
+0160:  MOVLW  28
+0162:  MOVWF  1C
+0164:  RCALL  006C
 ....................  display(0,0x08); 
-0154:  CLRF   08
-0156:  MOVLW  08
-0158:  MOVWF  09
-015A:  RCALL  005A
+0166:  CLRF   1B
+0168:  MOVLW  08
+016A:  MOVWF  1C
+016C:  RCALL  006C
 ....................  display(0,0x01); 
-015C:  CLRF   08
-015E:  MOVLW  01
-0160:  MOVWF  09
-0162:  RCALL  005A
+016E:  CLRF   1B
+0170:  MOVLW  01
+0172:  MOVWF  1C
+0174:  RCALL  006C
 ....................  delay_ms(5); 
-0164:  MOVLW  05
-0166:  MOVWF  07
-0168:  RCALL  001A
+0176:  MOVLW  05
+0178:  MOVWF  0D
+017A:  RCALL  002C
 ....................  display(0,0x06); 
-016A:  CLRF   08
-016C:  MOVLW  06
-016E:  MOVWF  09
-0170:  RCALL  005A
+017C:  CLRF   1B
+017E:  MOVLW  06
+0180:  MOVWF  1C
+0182:  RCALL  006C
 ....................  display(0,0x0c); 
-0172:  CLRF   08
-0174:  MOVLW  0C
-0176:  MOVWF  09
-0178:  RCALL  005A
+0184:  CLRF   1B
+0186:  MOVLW  0C
+0188:  MOVWF  1C
+018A:  RCALL  006C
 ....................  
 .................... } 
-017A:  GOTO   01AC (RETURN)
+018C:  GOTO   069C (RETURN)
 ....................  
 ....................  
 .................... /* display 
@@ -238,157 +240,271 @@ CCS PCH C Compiler, Version 4.057, 8241               22-out-12 21:56
 ....................  char temp; 
 ....................  if(tipo == true) 
 *
-005A:  DECFSZ 08,W
-005C:  BRA    009E
+006C:  DECFSZ 1B,W
+006E:  BRA    00B0
 ....................     { 
 ....................      temp=(dado & 0xf0) | set_bit1; 
-005E:  MOVF   09,W
-0060:  ANDLW  F0
-0062:  IORLW  02
-0064:  MOVWF  0A
+0070:  MOVF   1C,W
+0072:  ANDLW  F0
+0074:  IORLW  02
+0076:  MOVWF  1D
 ....................      PORTB = temp; 
-0066:  MOVFF  0A,F81
+0078:  MOVFF  1D,F81
 ....................      PORTB |= set_bit0; 
-006A:  BSF    F81.0
+007C:  BSF    F81.0
 ....................      delay_us(5); 
-006C:  MOVLW  08
-006E:  MOVWF  00
-0070:  DECFSZ 00,F
-0072:  BRA    0070
+007E:  MOVLW  08
+0080:  MOVWF  00
+0082:  DECFSZ 00,F
+0084:  BRA    0082
 ....................      PORTB &= clear_bit0; 
-0074:  BCF    F81.0
+0086:  BCF    F81.0
 .................... //   delay_us(50); 
 ....................      temp=(dado << 4) | set_bit1; 
-0076:  SWAPF  09,W
-0078:  MOVWF  00
-007A:  MOVLW  F0
-007C:  ANDWF  00,F
-007E:  MOVF   00,W
-0080:  IORLW  02
-0082:  MOVWF  0A
+0088:  SWAPF  1C,W
+008A:  MOVWF  00
+008C:  MOVLW  F0
+008E:  ANDWF  00,F
+0090:  MOVF   00,W
+0092:  IORLW  02
+0094:  MOVWF  1D
 ....................      PORTB = temp; 
-0084:  MOVFF  0A,F81
+0096:  MOVFF  1D,F81
 ....................      PORTB |= set_bit0; 
-0088:  BSF    F81.0
+009A:  BSF    F81.0
 ....................      delay_us(5); 
-008A:  MOVLW  08
-008C:  MOVWF  00
-008E:  DECFSZ 00,F
-0090:  BRA    008E
+009C:  MOVLW  08
+009E:  MOVWF  00
+00A0:  DECFSZ 00,F
+00A2:  BRA    00A0
 ....................      PORTB &= clear_bit0; 
-0092:  BCF    F81.0
+00A4:  BCF    F81.0
 ....................      delay_us(50); 
-0094:  MOVLW  53
-0096:  MOVWF  00
-0098:  DECFSZ 00,F
-009A:  BRA    0098
+00A6:  MOVLW  53
+00A8:  MOVWF  00
+00AA:  DECFSZ 00,F
+00AC:  BRA    00AA
 ....................  
 ....................     } 
 ....................  else 
-009C:  BRA    00D4
+00AE:  BRA    00E6
 ....................     { 
 ....................      temp=(dado & 0xf0); 
-009E:  MOVF   09,W
-00A0:  ANDLW  F0
-00A2:  MOVWF  0A
+00B0:  MOVF   1C,W
+00B2:  ANDLW  F0
+00B4:  MOVWF  1D
 ....................      PORTB = temp; 
-00A4:  MOVFF  0A,F81
+00B6:  MOVFF  1D,F81
 ....................      PORTB |= set_bit0; 
-00A8:  BSF    F81.0
+00BA:  BSF    F81.0
 ....................      delay_us(5); 
-00AA:  MOVLW  08
-00AC:  MOVWF  00
-00AE:  DECFSZ 00,F
-00B0:  BRA    00AE
+00BC:  MOVLW  08
+00BE:  MOVWF  00
+00C0:  DECFSZ 00,F
+00C2:  BRA    00C0
 ....................      PORTB &= clear_bit0; 
-00B2:  BCF    F81.0
+00C4:  BCF    F81.0
 .................... //   delay_us(50); 
 ....................      temp=(dado << 4); 
-00B4:  SWAPF  09,W
-00B6:  MOVWF  0A
-00B8:  MOVLW  F0
-00BA:  ANDWF  0A,F
+00C6:  SWAPF  1C,W
+00C8:  MOVWF  1D
+00CA:  MOVLW  F0
+00CC:  ANDWF  1D,F
 ....................      PORTB = temp; 
-00BC:  MOVFF  0A,F81
+00CE:  MOVFF  1D,F81
 ....................      PORTB |= set_bit0; 
-00C0:  BSF    F81.0
+00D2:  BSF    F81.0
 ....................      delay_us(5); 
-00C2:  MOVLW  08
-00C4:  MOVWF  00
-00C6:  DECFSZ 00,F
-00C8:  BRA    00C6
+00D4:  MOVLW  08
+00D6:  MOVWF  00
+00D8:  DECFSZ 00,F
+00DA:  BRA    00D8
 ....................      PORTB &= clear_bit0; 
-00CA:  BCF    F81.0
+00DC:  BCF    F81.0
 ....................      delay_us(50); 
-00CC:  MOVLW  53
-00CE:  MOVWF  00
-00D0:  DECFSZ 00,F
-00D2:  BRA    00D0
+00DE:  MOVLW  53
+00E0:  MOVWF  00
+00E2:  DECFSZ 00,F
+00E4:  BRA    00E2
 ....................     } 
 ....................  
 .................... } 
-00D4:  RETLW  00
+00E6:  RETLW  00
 ....................  
 .................... #separate 
 .................... void mostra(char dado) 
 .................... { 
 ....................  display(1,dado); 
 *
-017E:  MOVLW  01
-0180:  MOVWF  08
-0182:  MOVFF  07,09
-0186:  RCALL  005A
+0416:  MOVLW  01
+0418:  MOVWF  1B
+041A:  MOVFF  1A,1C
+041E:  RCALL  006C
 .................... } 
-0188:  GOTO   01BC (RETURN)
+0420:  RETLW  00
 ....................  
 .................... main() 
 .................... {  
-018C:  CLRF   FF8
-018E:  BCF    FD0.7
-0190:  CLRF   FEA
-0192:  CLRF   FE9
-0194:  BSF    FC1.0
-0196:  BSF    FC1.1
-0198:  BSF    FC1.2
-019A:  BCF    FC1.3
-.................... delay_ms(500); 
-019C:  MOVLW  02
-019E:  MOVWF  06
-01A0:  MOVLW  FA
-01A2:  MOVWF  07
-01A4:  RCALL  001A
-01A6:  DECFSZ 06,F
-01A8:  BRA    01A0
-.................... inic_display(); 
-01AA:  BRA    00D6
+*
+065C:  CLRF   FF8
+065E:  BCF    FD0.7
+0660:  CLRF   FEA
+0662:  CLRF   FE9
+0664:  BSF    FC1.0
+0666:  BSF    FC1.1
+0668:  BSF    FC1.2
+066A:  BCF    FC1.3
+....................    long int temp; 
+....................    float temperatura; 
 ....................  
-.................... while (true) 
-.................... { 
-.................... mostra("teste"); 
-01AC:  CLRF   06
-01AE:  MOVF   06,W
-01B0:  RCALL  0004
-01B2:  IORLW  00
-01B4:  BZ    01BE
-01B6:  INCF   06,F
-01B8:  MOVWF  07
-01BA:  BRA    017E
-01BC:  BRA    01AE
-.................... output_toggle(PIN_D4); 
-01BE:  BCF    F95.4
-01C0:  BTG    F8C.4
-.................... delay_ms (500); 
-01C2:  MOVLW  02
-01C4:  MOVWF  06
-01C6:  MOVLW  FA
-01C8:  MOVWF  07
-01CA:  RCALL  001A
-01CC:  DECFSZ 06,F
-01CE:  BRA    01C6
+....................    setup_adc(ADC_CLOCK_INTERNAL); 
+066C:  BCF    FC1.6
+066E:  BSF    FC2.6
+0670:  BSF    FC2.7
+0672:  BSF    FC1.7
+0674:  BSF    FC2.0
+....................    //enables the a/d module  
+....................    set_adc_channel(0); 
+0676:  MOVLW  00
+0678:  MOVWF  01
+067A:  MOVF   FC2,W
+067C:  ANDLW  C7
+067E:  IORWF  01,W
+0680:  MOVWF  FC2
+....................    //the next read_adc call will read channel 0 
+....................    delay_us(10); 
+0682:  MOVLW  10
+0684:  MOVWF  00
+0686:  DECFSZ 00,F
+0688:  BRA    0686
+068A:  NOP   
+....................    //a small delay is required after setting the channel 
+....................  
+....................    //aguarda 500ms 
+....................    delay_ms(500); 
+068C:  MOVLW  02
+068E:  MOVWF  0C
+0690:  MOVLW  FA
+0692:  MOVWF  0D
+0694:  RCALL  002C
+0696:  DECFSZ 0C,F
+0698:  BRA    0690
+....................     
+....................    //inicializa o display LCD 
+....................    inic_display(); 
+069A:  BRA    00E8
+....................  
+....................    while (true) 
+....................    { 
+....................       //starts the conversion and reads the result 
+....................       temp = read_adc(); 
+069C:  BSF    FC2.2
+069E:  BTFSC  FC2.2
+06A0:  BRA    069E
+06A2:  MOVFF  FC3,06
+06A6:  MOVFF  FC4,07
+....................  
+....................       //faz o calculo para converter a tensao em graus celsius 
+....................       temperatura = ((temp - 50) * 8.9)/ 100; 
+06AA:  MOVLW  32
+06AC:  SUBWF  06,W
+06AE:  MOVWF  0C
+06B0:  MOVLW  00
+06B2:  SUBWFB 07,W
+06B4:  MOVWF  0D
+06B6:  MOVWF  0F
+06B8:  MOVFF  0C,0E
+06BC:  BRA    0190
+06BE:  MOVFF  03,1D
+06C2:  MOVFF  02,1C
+06C6:  MOVFF  01,1B
+06CA:  MOVFF  00,1A
+06CE:  MOVLW  66
+06D0:  MOVWF  21
+06D2:  MOVWF  20
+06D4:  MOVLW  0E
+06D6:  MOVWF  1F
+06D8:  MOVLW  82
+06DA:  MOVWF  1E
+06DC:  RCALL  01C8
+06DE:  MOVFF  00,0E
+06E2:  MOVFF  01,0F
+06E6:  MOVFF  02,10
+06EA:  MOVFF  03,11
+06EE:  MOVFF  03,15
+06F2:  MOVFF  02,14
+06F6:  MOVFF  01,13
+06FA:  MOVFF  00,12
+06FE:  CLRF   19
+0700:  CLRF   18
+0702:  MOVLW  48
+0704:  MOVWF  17
+0706:  MOVLW  85
+0708:  MOVWF  16
+070A:  BRA    02BA
+070C:  MOVFF  03,0B
+0710:  MOVFF  02,0A
+0714:  MOVFF  01,09
+0718:  MOVFF  00,08
+....................  
+....................       //envia o cursor do LCD para a posicao 0,0 
+....................       display(0,0x80); 
+071C:  CLRF   1B
+071E:  MOVLW  80
+0720:  MOVWF  1C
+0722:  RCALL  006C
+....................  
+....................       //imprime na tela a temperatura 
+....................       printf(mostra,"Temperatura: %.1lfC   ",temperatura); 
+0724:  CLRF   0C
+0726:  MOVF   0C,W
+0728:  RCALL  0004
+072A:  INCF   0C,F
+072C:  MOVWF  00
+072E:  MOVWF  1A
+0730:  RCALL  0416
+0732:  MOVLW  0D
+0734:  SUBWF  0C,W
+0736:  BNZ   0726
+0738:  MOVLW  89
+073A:  MOVWF  FE9
+073C:  MOVFF  0B,10
+0740:  MOVFF  0A,0F
+0744:  MOVFF  09,0E
+0748:  MOVFF  08,0D
+074C:  MOVLW  01
+074E:  MOVWF  11
+0750:  BRA    04DC
+0752:  MOVLW  12
+0754:  MOVWF  0D
+0756:  MOVF   0D,W
+0758:  RCALL  0004
+075A:  INCF   0D,F
+075C:  MOVWF  00
+075E:  MOVWF  1A
+0760:  RCALL  0416
+0762:  MOVLW  16
+0764:  SUBWF  0D,W
+0766:  BNZ   0756
+....................  
+....................       //alterna o estado do pino D4 
+....................       output_toggle(PIN_D4); 
+0768:  BCF    F95.4
+076A:  BTG    F8C.4
+....................  
+....................       //aguarda 500ms 
+....................       delay_ms (500); 
+076C:  MOVLW  02
+076E:  MOVWF  0C
+0770:  MOVLW  FA
+0772:  MOVWF  0D
+0774:  RCALL  002C
+0776:  DECFSZ 0C,F
+0778:  BRA    0770
+....................    } 
+077A:  BRA    069C
 .................... } 
-01D0:  BRA    01AC
-.................... } 
-01D2:  SLEEP 
+077C:  SLEEP 
 
 Configuration Fuses:
    Word  1: 2200   HS NOOSCSEN

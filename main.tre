@@ -1,5 +1,5 @@
 ÀÄmain
-   ÀÄMAIN  0/72  Ram=1
+   ÀÄMAIN  0/290  Ram=12
       ÃÄ??0??
       ÃÄ@delay_ms1  0/38  Ram=1
       ÃÄinic_display  0/168  Ram=0
@@ -15,7 +15,27 @@
       ³  ÃÄ@delay_ms1  0/38  Ram=1
       ³  ÃÄdisplay  0/124  Ram=4
       ³  ÀÄdisplay  0/124  Ram=4
-      ÃÄ@const57  0/22  Ram=0
-      ÃÄmostra  0/14  Ram=1
+      ÃÄ@ITOF  0/56  Ram=2
+      ÃÄ@MULFF  0/242  Ram=11
+      ÃÄ@DIVFF  0/348  Ram=14
+      ÃÄdisplay  0/124  Ram=4
+      ÃÄ@const67  0/40  Ram=0
+      ÃÄmostra  0/12  Ram=1
+      ³  ÀÄdisplay  0/124  Ram=4
+      ÃÄ@PRINTF_L32D_52FPFPF  0/384  Ram=13
+      ³  ÃÄ@MULFF  0/242  Ram=11
+      ³  ÃÄ@FTOSD  0/64  Ram=5
+      ³  ÃÄ@DIV3232  0/122  Ram=13
+      ³  ÃÄmostra  0/12  Ram=1
+      ³  ³  ÀÄdisplay  0/124  Ram=4
+      ³  ÃÄmostra  0/12  Ram=1
+      ³  ³  ÀÄdisplay  0/124  Ram=4
+      ³  ÃÄmostra  0/12  Ram=1
+      ³  ³  ÀÄdisplay  0/124  Ram=4
+      ³  ÃÄmostra  0/12  Ram=1
+      ³  ³  ÀÄdisplay  0/124  Ram=4
+      ³  ÀÄ@DIV3232  0/122  Ram=13
+      ÃÄ@const67  0/40  Ram=0
+      ÃÄmostra  0/12  Ram=1
       ³  ÀÄdisplay  0/124  Ram=4
       ÀÄ@delay_ms1  0/38  Ram=1
