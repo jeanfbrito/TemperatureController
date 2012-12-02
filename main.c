@@ -3,10 +3,28 @@
 #use delay(clock=20000000)
 #fuses HS,NOWDT,PUT
 #include <lcd_generico.c>
+#include "ds1307.c"
+ 
 main()
 { 
+   
    long int temp;
    float temperatura;
+
+  BYTE sec; 
+  BYTE min; 
+  BYTE hrs; 
+  BYTE day; 
+  BYTE month; 
+  BYTE yr; 
+  BYTE dow; 
+  
+  ds1307_init(); 
+  
+  // Set date for -> 15 June 2005 Tuesday 
+  // Set time for -> 15:20:55 
+  ds1307_set_date_time(18,11,12,2,22,05,55); 
+
 
    setup_adc(ADC_CLOCK_INTERNAL);
    //enables the a/d module 
@@ -21,8 +39,10 @@ main()
    //inicializa o display LCD
    inic_display();
 
+
    while (true)
    {
+
       //starts the conversion and reads the result
       temp = read_adc();
 
@@ -34,6 +54,19 @@ main()
 
       //imprime na tela a temperatura
       printf(mostra,"Temperatura: %.1lfC   ",temperatura);
+      
+      //envia o cursor do LCD para a posicao 1,0
+      display(0,0xC0);
+
+      //imprime na tela a temperatura
+    //ds1307_get_date(day,month,yr,dow); 
+    ds1307_get_time(hrs,min,sec); 
+      
+      sec = ds1307_read_byte(0);
+      sec = bcd2bin(sec);
+      
+    //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
+    printf(mostra,"Hora: \%02d:\%02d:\%02d", hrs,min,sec); 
 
       //alterna o estado do pino D4
       output_toggle(PIN_D4);

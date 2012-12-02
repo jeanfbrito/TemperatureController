@@ -1,3 +1,8 @@
->>> Warning 208 "main.c" Line 6(1,5): Function not void and does not return a value  MAIN
-      Memory usage:   ROM=6%      RAM=1% - 2%
-      0 Errors,  1 Warnings.
+>>> Warning 203 "C:\Users\Jean\Documents\GitHub\TemperatureController\ds1307.c" Line 110(1,1): Condition always TRUE
+>>> Warning 208 "main.c" Line 8(1,5): Function not void and does not return a value  MAIN
+>>> Warning 202 "main.c" Line 17(8,11): Variable never used:   day
+>>> Warning 202 "main.c" Line 18(8,13): Variable never used:   month
+>>> Warning 202 "main.c" Line 19(8,10): Variable never used:   yr
+>>> Warning 202 "main.c" Line 20(8,11): Variable never used:   dow
+      Memory usage:   ROM=11%      RAM=2% - 3%
+      0 Errors,  6 Warnings.
