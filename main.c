@@ -5,6 +5,10 @@
 #include <lcd_generico.c>
 #include "ds1307.c"
 
+#define TECLA_SET    input(PIN_B4)
+#define TECLA_MAIS   input(PIN_B5)
+#define TECLA_MENOS  input(PIN_B6)
+
 BYTE sec; 
 BYTE min; 
 BYTE hrs; 
@@ -12,7 +16,8 @@ BYTE day;
 BYTE month; 
 BYTE yr; 
 BYTE dow; 
-int screen = 0; //0-Tela principal, 1-Config. Temperatura, 2-Config. Horario
+int temperatura_maxima;
+int tela = 0; //0-Tela principal, 1-Config. Temperatura, 2-Config. Horario
 
 update_clock(); 
 float read_temperature();
@@ -49,22 +54,21 @@ main()
 //inicializa o display LCD
   inic_display();
 
-
   while (true)
   {
 
-    switch(screen){
+    switch(tela){
       case 0:
-      update_clock();
-      read_temperature();
-      check_temperature();
-      show_clock();
-      show_temperature();
-      break;
+        update_clock();
+        read_temperature();
+        check_temperature();
+        show_clock();
+        show_temperature();
+        break;
       case 1:
-      configure_temperature();
+        configure_temperature();
       case 2:
-      configure_time();
+        configure_time();
     }
 
 
@@ -110,106 +114,133 @@ float read_temperature() {
 return(temp);//((temp - 50) * 8.9)/ 100;
 }
 
-configure_temperature() {
-  static state = 0;
+configure_time() {
+  static int state = 0;
 
   switch(state){
     case 0: //menu superior
-      if(tecla_set)
+      if(TECLA_SET)
         state = 1;
-      else if(tecla_mais)
+      else if(TECLA_MAIS)
         tela = 2;
-      else if (tecla_menos)
+      else if (TECLA_MENOS)
         tela = 0;
       break;
 
     case 1: //hora
-      if(tecla_set)
+      if(TECLA_SET)
         state = 2;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         hrs++;
         if(hrs > 23)
           hrs = 0;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         hrs--;
         if(hrs < 0)
           hrs = 23;
       }
     break;
     case 2: //minuto
-      if(tecla_set)
+      if(TECLA_SET)
         state = 3;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         min++;
         if(min > 59)
           min = 0;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         min--;
         if(min < 0)
           min = 59;
       }
     break;
     case 3: //segundo
-      if(tecla_set)
+      if(TECLA_SET)
         state = 4;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         sec++;
         if(sec > 59)
           sec = 0;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         sec--;
         if(sec < 0)
           sec = 59;
       }
     break;
     case 4: //dia
-      if(tecla_set)
+      if(TECLA_SET)
         state = 5;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         day++;
         if(day > 31)
           day = 1;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         day--;
         if(day < 1)
           day = 31;
       }
     break;
     case 5: //mes
-      if(tecla_set)
+      if(TECLA_SET)
         state = 6;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         month++;
         if(month > 12)
           month = 1;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         month--;
         if(month < 1)
           month = 12;
       }
     break;
     case 6: //mes
-      if(tecla_set)
+      if(TECLA_SET)
         state = 0;
-      else if (tecla_mais){
+      else if (TECLA_MAIS){
         yr++;
         if(yr > 30)
           yr = 0;
       }
-      else if(tecla_menos){
+      else if(TECLA_MENOS){
         yr--;
         if(yr < 0)
           yr = 30;
       }
     break;
-
-
-
   }
 
+}
+
+configure_temperature() {
+  static int state;
+
+  switch(state){
+    case 0: //menu superior
+      if(TECLA_SET)
+        state = 1;
+      else if(TECLA_MAIS)
+        tela = 2;
+      else if (TECLA_MENOS)
+        tela = 0;
+      break;
+
+    case 1: //temperatura maxima
+      if(TECLA_SET)
+        state = 0;
+      else if (TECLA_MAIS){
+        temperatura_maxima++;
+        if(temperatura_maxima > 100)
+          temperatura_maxima = 0;
+      }
+      else if(TECLA_MENOS){
+        temperatura_maxima--;
+        if(temperatura_maxima < 1)
+          temperatura_maxima = 100;
+      }
+    break;
+  }
 }

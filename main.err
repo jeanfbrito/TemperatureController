@@ -1,9 +1,16 @@
 >>> Warning 203 "C:\Users\Jean\Documents\GitHub\TemperatureController\ds1307.c" Line 110(1,1): Condition always TRUE
->>> Warning 208 "main.c" Line 25(1,5): Function not void and does not return a value  MAIN
->>> Warning 208 "main.c" Line 17(1,13): Function not void and does not return a value  update_clock
->>> Warning 202 "main.c" Line 11(8,11): Variable never used:   day
->>> Warning 202 "main.c" Line 12(8,13): Variable never used:   month
->>> Warning 202 "main.c" Line 13(8,10): Variable never used:   yr
->>> Warning 202 "main.c" Line 14(8,11): Variable never used:   dow
-*** Error 112 "main.c" Line 60(1,1): Function used but not defined:  ... check_temperature  SCR=703
-      1 Errors,  7 Warnings.
+>>> Warning 208 "main.c" Line 30(1,5): Function not void and does not return a value  MAIN
+>>> Warning 208 "main.c" Line 22(1,13): Function not void and does not return a value  update_clock
+>>> Warning 205 "main.c" Line 140(1,1): Unsigned variable is never less than zero
+>>> Warning 204 "main.c" Line 141(1,1): Condition always FALSE
+>>> Warning 205 "main.c" Line 154(1,1): Unsigned variable is never less than zero
+>>> Warning 204 "main.c" Line 155(1,1): Condition always FALSE
+>>> Warning 205 "main.c" Line 168(1,1): Unsigned variable is never less than zero
+>>> Warning 204 "main.c" Line 169(1,1): Condition always FALSE
+>>> Warning 205 "main.c" Line 210(1,1): Unsigned variable is never less than zero
+>>> Warning 204 "main.c" Line 211(1,1): Condition always FALSE
+>>> Warning 208 "main.c" Line 28(1,15): Function not void and does not return a value  configure_time
+>>> Warning 208 "main.c" Line 27(1,22): Function not void and does not return a value  configure_temperature
+>>> Warning 202 "main.c" Line 18(6,9): Variable never used:   dow
+*** Error 112 "main.c" Line 64(1,1): Function used but not defined:  ... check_temperature  SCR=707
+      1 Errors,  14 Warnings.
