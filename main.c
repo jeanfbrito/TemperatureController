@@ -16,6 +16,11 @@
   
 update_clock(); 
 float read_temperature();
+check_temperature();
+show_clock();
+show_temperature();
+configure_temperature();
+configure_time();
  
 main()
 { 
@@ -47,6 +52,22 @@ main()
 
    while (true)
    {
+   
+      switch(screen){
+         case 0:
+            update_clock();
+            read_temperature();
+            check_temperature();
+            show_clock();
+            show_temperature();
+            break;
+         case 1:
+            configure_temperature();
+         case 2:
+            configure_time();
+      }
+      
+   
       temperatura = read_temperature();
 
       //envia o cursor do LCD para a posicao 0,0

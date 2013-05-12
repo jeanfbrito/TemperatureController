@@ -1,128 +1,32 @@
 000     @SCRATCH
+ na     display.@SCRATCH1
+ na     @I2C_READ_1.@SCRATCH2
+ na     ds1307_init.@SCRATCH1
+ na     ds1307_set_date_time.@SCRATCH1
+ na     ds1307_get_time.@SCRATCH2
+ na     bcd2bin.@SCRATCH1
+ na     update_clock.@SCRATCH1
+ na     @DIV88.@SCRATCH1
+ na     @PRINTF_D_52.@SCRATCH4
 001     @SCRATCH
-001     _RETURN_
 002     @SCRATCH
 003     @SCRATCH
 004     @SCRATCH
-005     sec
-006     min
-007     hrs
-008     day
-009     month
-00A     yr
-00B     dow
-00C     screen
-00D-010 MAIN.temperatura
-011-012 read_temperature.temp
-011     ds1307_read_byte.addr
-011     ds1307_set_date_time.day
-011     ds1307_init.seconds
-011     @delay_us1.P1
-011     ds1307_get_time.@SCRATCH1
-011     MAIN.@SCRATCH1
-011     update_clock.@SCRATCH1
-012     ds1307_read_byte.retval
-012     ds1307_set_date_time.mth
-012-015 @PRINTF_L32D_52FPFPF.P1
-012     @delay_ms1.P2
-012     @PRINTF_D_52.P3
-012     ds1307_init.@SCRATCH1
-012     ds1307_get_time.@SCRATCH2
-012     MAIN.@SCRATCH2
-013     ds1307_set_date_time.year
-013     @PRINTF_D_52.P1
-013-014 @ITOF.P2
-014     @I2C_READ_1.P1
-014     ds1307_set_date_time.dow
-014     @PRINTF_D_52.@SCRATCH1
-015     ds1307_set_date_time.hr
-015     @I2C_READ_1.@SCRATCH1
-015     @PRINTF_D_52.@SCRATCH2
-016     ds1307_set_date_time.min
-016     bcd2bin.bcd_value
-016     @PRINTF_L32D_52FPFPF.P1
-016     @I2C_READ_1.@SCRATCH2
-016     @PRINTF_D_52.@SCRATCH3
-017     ds1307_set_date_time.sec
-017     bcd2bin.temp
-017     @PRINTF_L32D_52FPFPF.@SCRATCH1
-017     @PRINTF_D_52.@SCRATCH4
-018     bin2bcd.binary_value
-018     @DIV88.P1
-018     ds1307_set_date_time.@SCRATCH1
-018     bcd2bin.@SCRATCH1
-018     @PRINTF_L32D_52FPFPF.@SCRATCH2
-019     @DIV88.P1
-019     @I2C_WRITE_1.P2
-019     bin2bcd.temp
-019     @PRINTF_L32D_52FPFPF.@SCRATCH3
-01A     bin2bcd.retval
-01A     @PRINTF_L32D_52FPFPF.@SCRATCH4
-01A     @DIV88.@SCRATCH1
-01B     @PRINTF_L32D_52FPFPF.@SCRATCH5
-01C     @PRINTF_L32D_52FPFPF.@SCRATCH6
-01D     @PRINTF_L32D_52FPFPF.@SCRATCH7
-01E     @PRINTF_L32D_52FPFPF.@SCRATCH8
-01F-022 @DIV3232.P1
-01F     mostra.dado
-01F-022 @MULFF.P1
-01F-022 @FTOSD.P2
-020     display.tipo
-021     display.dado
-022     display.temp
-023-026 @MULFF.P1
-023-026 @DIV3232.P2
-023     display.@SCRATCH1
-023     @FTOSD.@SCRATCH1
-027     @MULFF.@SCRATCH1
-027     @DIV3232.@SCRATCH1
-028     @MULFF.@SCRATCH2
-028     @DIV3232.@SCRATCH2
-029     @MULFF.@SCRATCH3
-029     @DIV3232.@SCRATCH3
-02A     @DIV3232.@SCRATCH4
-02B     @DIV3232.@SCRATCH5
 F81     PORTB
 F83     PSP_DATA
 F93     TRISB
-FBB-FBC CCP_2
 FBB     CCP_2_LOW
+FBB-FBC CCP_2
 FBC     CCP_2_HIGH
-FBE-FBF CCP_1
 FBE     CCP_1_LOW
+FBE-FBF CCP_1
 FBF     CCP_1_HIGH
-FE9-FEA @READ_PROGRAM_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
-FF6-FF8 @READ_PROGRAM_MEMORY.P1
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-0374  @delay_ms1
-039A  @delay_us1
-0430  inic_display
-03B4  display
-052C  mostra
-00BE  @I2C_READ_1
-0052  @I2C_WRITE_1
-016E  ds1307_init
-02A6  ds1307_set_date_time
-09F8  ds1307_get_time
-014A  bin2bcd
-0124  bcd2bin
-0866  ds1307_read_byte
-0B18  MAIN
-0004  @const101
-0538  @MULFF
-062C  @FTOSD
-066C  @DIV3232
-06E6  @PRINTF_L32D_52FPFPF
-09F8  update_clock
-002C  @const113
-0908  @DIV88
-0930  @PRINTF_D_52
-0510  read_temperature
-04D8  @ITOF
-0B18  @cinit
 
 Project Directory:
     C:\Users\Jean\Documents\GitHub\TemperatureController\
@@ -147,10 +51,4 @@ Compiler Settings:
 Output Files:
     Errors:      main.err
     Ext Symbols: main.esym
-    INHX32:      main.hex
     Symbols:     main.sym
-    List:        main.lst
-    Debug/COFF:  main.cof
-    Project:     main.PJT
-    Call Tree:   main.tre
-    Statistics:  main.sta
