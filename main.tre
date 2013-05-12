@@ -1,5 +1,5 @@
 ÀÄmain
-   ÀÄMAIN  0/256  Ram=8
+   ÀÄMAIN  0/238  Ram=6
       ÃÄ??0??
       ÃÄds1307_init  0/312  Ram=2
       ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
@@ -46,9 +46,10 @@
       ³  ÃÄ@delay_ms1  0/38  Ram=1
       ³  ÃÄdisplay  0/124  Ram=4
       ³  ÀÄdisplay  0/124  Ram=4
-      ÃÄ@ITOF  0/56  Ram=2
+      ÃÄread_temperature  0/28  Ram=2
+      ³  ÀÄ@ITOF  0/56  Ram=2
       ÃÄdisplay  0/124  Ram=4
-      ÃÄ@const102  0/40  Ram=0
+      ÃÄ@const101  0/40  Ram=0
       ÃÄmostra  0/12  Ram=1
       ³  ÀÄdisplay  0/124  Ram=4
       ÃÄ@PRINTF_L32D_52FPFPF  0/384  Ram=13
@@ -64,7 +65,7 @@
       ³  ÃÄmostra  0/12  Ram=1
       ³  ³  ÀÄdisplay  0/124  Ram=4
       ³  ÀÄ@DIV3232  0/122  Ram=13
-      ÃÄ@const102  0/40  Ram=0
+      ÃÄ@const101  0/40  Ram=0
       ÃÄmostra  0/12  Ram=1
       ³  ÀÄdisplay  0/124  Ram=4
       ÃÄdisplay  0/124  Ram=4
@@ -79,13 +80,13 @@
       ³  ³  ÃÄbcd2bin  0/38  Ram=3
       ³  ³  ÃÄ@I2C_READ_1  0/102  Ram=3
       ³  ³  ÀÄbcd2bin  0/38  Ram=3
-      ³  ÃÄds1307_read_byte  0/160  Ram=2
+      ³  ÃÄds1307_read_byte  0/162  Ram=2
       ³  ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
       ³  ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
       ³  ³  ÃÄ@I2C_WRITE_1  0/108  Ram=1
       ³  ³  ÀÄ@I2C_READ_1  0/102  Ram=3
       ³  ÃÄbcd2bin  0/38  Ram=3
-      ³  ÃÄ@const114  0/38  Ram=0
+      ³  ÃÄ@const113  0/38  Ram=0
       ³  ÃÄmostra  0/12  Ram=1
       ³  ³  ÀÄdisplay  0/124  Ram=4
       ³  ÃÄ@PRINTF_D_52  0/200  Ram=6

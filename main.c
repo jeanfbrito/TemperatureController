@@ -12,13 +12,14 @@
   BYTE month; 
   BYTE yr; 
   BYTE dow; 
+  int screen = 0; //0-Tela principal, 1-Config. Temperatura, 2-Config. Horario
   
 update_clock(); 
+float read_temperature();
  
 main()
 { 
    
-   long int temp;
    float temperatura;
 
 
@@ -46,12 +47,7 @@ main()
 
    while (true)
    {
-
-      //starts the conversion and reads the result
-      temp = read_adc();
-
-      //faz o calculo para converter a tensao em graus celsius
-      temperatura = temp;//((temp - 50) * 8.9)/ 100;
+      temperatura = read_temperature();
 
       //envia o cursor do LCD para a posicao 0,0
       display(0,0x80);
@@ -82,4 +78,13 @@ update_clock(){
       
     //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
     printf(mostra,"Hora: \%02d:\%02d:\%02d", hrs,min,sec); 
+}
+
+float read_temperature() {
+   long int temp;
+   //starts the conversion and reads the result
+   temp = read_adc();
+
+   //faz o calculo para converter a tensao em graus celsius
+   return(temp);//((temp - 50) * 8.9)/ 100;
 }

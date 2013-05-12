@@ -1,15 +1,15 @@
-CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
+CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:36
 
                Filename: main.lst
 
-               ROM used: 3066 bytes (9%)
-                         Largest free fragment is 29702
-               RAM used: 20 (1%) at main() level
-                         45 (3%) worst case
+               ROM used: 3078 bytes (9%)
+                         Largest free fragment is 29690
+               RAM used: 19 (1%) at main() level
+                         44 (3%) worst case
                Stack:    4 locations
 
 *
-0000:  GOTO   0AFA
+0000:  GOTO   0B18
 .................... #include <18f452.h> 
 .................... //////// Standard Header file for the PIC18F452 device //////////////// 
 .................... #device PIC18F452 
@@ -19,7 +19,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 .................... #use delay(clock=20000000) 
 *
 0374:  CLRF   FEA
-0376:  MOVLW  13
+0376:  MOVLW  12
 0378:  MOVWF  FE9
 037A:  MOVF   FEF,W
 037C:  BZ    0398
@@ -38,10 +38,10 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0396:  BRA    037E
 0398:  RETLW  00
 039A:  MOVLW  03
-039C:  SUBWF  12,F
+039C:  SUBWF  11,F
 039E:  BNC   03B2
 03A0:  CLRF   FEA
-03A2:  MOVLW  12
+03A2:  MOVLW  11
 03A4:  MOVWF  FE9
 03A6:  MOVF   FEF,W
 03A8:  BZ    03B2
@@ -107,7 +107,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0430:  CLRF   F93
 ....................  delay_ms(50); 
 0432:  MOVLW  32
-0434:  MOVWF  13
+0434:  MOVWF  12
 0436:  RCALL  0374
 ....................  
 ....................  PORTB  = 0x30; 
@@ -124,7 +124,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0446:  BCF    F81.0
 ....................  delay_ms(25); 
 0448:  MOVLW  19
-044A:  MOVWF  13
+044A:  MOVWF  12
 044C:  RCALL  0374
 ....................  
 ....................  PORTB = 0x30; 
@@ -141,7 +141,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 045C:  BCF    F81.0
 ....................  delay_ms(25); 
 045E:  MOVLW  19
-0460:  MOVWF  13
+0460:  MOVWF  12
 0462:  RCALL  0374
 ....................  
 ....................  PORTB = 0x30; 
@@ -158,7 +158,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0472:  BCF    F81.0
 ....................  delay_ms(25); 
 0474:  MOVLW  19
-0476:  MOVWF  13
+0476:  MOVWF  12
 0478:  RCALL  0374
 ....................  
 ....................  PORTB = 0x30; 
@@ -176,7 +176,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  
 ....................  delay_us(200); 
 048A:  MOVLW  C8
-048C:  MOVWF  12
+048C:  MOVWF  11
 048E:  RCALL  039A
 ....................  PORTB = 0x20; 
 0490:  MOVLW  20
@@ -193,40 +193,40 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  
 ....................  delay_us(200); 
 04A0:  MOVLW  C8
-04A2:  MOVWF  12
+04A2:  MOVWF  11
 04A4:  RCALL  039A
 ....................  display(0,0x28); 
-04A6:  CLRF   21
+04A6:  CLRF   20
 04A8:  MOVLW  28
-04AA:  MOVWF  22
+04AA:  MOVWF  21
 04AC:  RCALL  03B4
 ....................  display(0,0x08); 
-04AE:  CLRF   21
+04AE:  CLRF   20
 04B0:  MOVLW  08
-04B2:  MOVWF  22
+04B2:  MOVWF  21
 04B4:  RCALL  03B4
 ....................  display(0,0x01); 
-04B6:  CLRF   21
+04B6:  CLRF   20
 04B8:  MOVLW  01
-04BA:  MOVWF  22
+04BA:  MOVWF  21
 04BC:  RCALL  03B4
 ....................  delay_ms(5); 
 04BE:  MOVLW  05
-04C0:  MOVWF  13
+04C0:  MOVWF  12
 04C2:  RCALL  0374
 ....................  display(0,0x06); 
-04C4:  CLRF   21
+04C4:  CLRF   20
 04C6:  MOVLW  06
-04C8:  MOVWF  22
+04C8:  MOVWF  21
 04CA:  RCALL  03B4
 ....................  display(0,0x0c); 
-04CC:  CLRF   21
+04CC:  CLRF   20
 04CE:  MOVLW  0C
-04D0:  MOVWF  22
+04D0:  MOVWF  21
 04D2:  RCALL  03B4
 ....................  
 .................... } 
-04D4:  GOTO   0B5E (RETURN)
+04D4:  GOTO   0B80 (RETURN)
 ....................  
 ....................  
 .................... /* display 
@@ -240,16 +240,16 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  char temp; 
 ....................  if(tipo == true) 
 *
-03B4:  DECFSZ 21,W
+03B4:  DECFSZ 20,W
 03B6:  BRA    03F8
 ....................     { 
 ....................      temp=(dado & 0xf0) | set_bit1; 
-03B8:  MOVF   22,W
+03B8:  MOVF   21,W
 03BA:  ANDLW  F0
 03BC:  IORLW  02
-03BE:  MOVWF  23
+03BE:  MOVWF  22
 ....................      PORTB = temp; 
-03C0:  MOVFF  23,F81
+03C0:  MOVFF  22,F81
 ....................      PORTB |= set_bit0; 
 03C4:  BSF    F81.0
 ....................      delay_us(5); 
@@ -261,15 +261,15 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 03CE:  BCF    F81.0
 .................... //   delay_us(50); 
 ....................      temp=(dado << 4) | set_bit1; 
-03D0:  SWAPF  22,W
+03D0:  SWAPF  21,W
 03D2:  MOVWF  00
 03D4:  MOVLW  F0
 03D6:  ANDWF  00,F
 03D8:  MOVF   00,W
 03DA:  IORLW  02
-03DC:  MOVWF  23
+03DC:  MOVWF  22
 ....................      PORTB = temp; 
-03DE:  MOVFF  23,F81
+03DE:  MOVFF  22,F81
 ....................      PORTB |= set_bit0; 
 03E2:  BSF    F81.0
 ....................      delay_us(5); 
@@ -290,11 +290,11 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 03F6:  BRA    042E
 ....................     { 
 ....................      temp=(dado & 0xf0); 
-03F8:  MOVF   22,W
+03F8:  MOVF   21,W
 03FA:  ANDLW  F0
-03FC:  MOVWF  23
+03FC:  MOVWF  22
 ....................      PORTB = temp; 
-03FE:  MOVFF  23,F81
+03FE:  MOVFF  22,F81
 ....................      PORTB |= set_bit0; 
 0402:  BSF    F81.0
 ....................      delay_us(5); 
@@ -306,12 +306,12 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 040C:  BCF    F81.0
 .................... //   delay_us(50); 
 ....................      temp=(dado << 4); 
-040E:  SWAPF  22,W
-0410:  MOVWF  23
+040E:  SWAPF  21,W
+0410:  MOVWF  22
 0412:  MOVLW  F0
-0414:  ANDWF  23,F
+0414:  ANDWF  22,F
 ....................      PORTB = temp; 
-0416:  MOVFF  23,F81
+0416:  MOVFF  22,F81
 ....................      PORTB |= set_bit0; 
 041A:  BSF    F81.0
 ....................      delay_us(5); 
@@ -336,12 +336,12 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 .................... { 
 ....................  display(1,dado); 
 *
-0510:  MOVLW  01
-0512:  MOVWF  21
-0514:  MOVFF  20,22
-0518:  RCALL  03B4
+052C:  MOVLW  01
+052E:  MOVWF  20
+0530:  MOVFF  1F,21
+0534:  RCALL  03B4
 .................... } 
-051A:  RETLW  00
+0536:  RETLW  00
 ....................  
 .................... #include "ds1307.c" 
 ....................  
@@ -379,7 +379,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0064:  MOVWF  00
 0066:  DECFSZ 00,F
 0068:  BRA    0066
-006A:  RLCF   1A,F
+006A:  RLCF   19,F
 006C:  BCF    F8B.4
 006E:  BTFSC  FD8.0
 0070:  BSF    F94.4
@@ -422,8 +422,8 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 00BA:  BCF    F94.4
 00BC:  RETLW  00
 00BE:  MOVLW  08
-00C0:  MOVWF  16
-00C2:  MOVFF  00,17
+00C0:  MOVWF  15
+00C2:  MOVFF  00,16
 00C6:  BSF    F94.4
 00C8:  MOVLW  06
 00CA:  MOVWF  00
@@ -443,7 +443,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 00E6:  BRA    00E4
 00E8:  BCF    F94.3
 00EA:  BCF    F8B.3
-00EC:  DECFSZ 16,F
+00EC:  DECFSZ 15,F
 00EE:  BRA    00C6
 00F0:  BSF    F94.4
 00F2:  MOVLW  06
@@ -451,7 +451,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 00F6:  DECFSZ 00,F
 00F8:  BRA    00F6
 00FA:  BCF    F8B.4
-00FC:  MOVF   17,W
+00FC:  MOVF   16,W
 00FE:  BTFSS  FD8.2
 0100:  BCF    F94.4
 0102:  NOP   
@@ -479,7 +479,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 .................... {  
 ....................    BYTE seconds = 0;  
 *
-016E:  CLRF   12
+016E:  CLRF   11
 ....................  
 ....................    i2c_start();  
 0170:  BSF    F94.4
@@ -502,10 +502,10 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0192:  BCF    F94.3
 ....................    i2c_write(0xD0);      // WR to RTC  
 0194:  MOVLW  D0
-0196:  MOVWF  1A
+0196:  MOVWF  19
 0198:  RCALL  0052
 ....................    i2c_write(0x00);      // REG 0  
-019A:  CLRF   1A
+019A:  CLRF   19
 019C:  RCALL  0052
 ....................    i2c_start();  
 019E:  BSF    F94.4
@@ -530,15 +530,15 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 01C4:  BCF    F94.3
 ....................    i2c_write(0xD1);      // RD from RTC  
 01C6:  MOVLW  D1
-01C8:  MOVWF  1A
+01C8:  MOVWF  19
 01CA:  RCALL  0052
 ....................    seconds = bcd2bin(i2c_read(0)); // Read current "seconds" in DS1307  
 01CC:  CLRF   00
 01CE:  RCALL  00BE
-01D0:  MOVFF  01,13
-01D4:  MOVFF  01,17
+01D0:  MOVFF  01,12
+01D4:  MOVFF  01,16
 01D8:  RCALL  0124
-01DA:  MOVFF  01,12
+01DA:  MOVFF  01,11
 ....................    i2c_stop();  
 01DE:  BCF    F94.4
 01E0:  NOP   
@@ -557,7 +557,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 01FA:  DECFSZ 00,F
 01FC:  BRA    01FA
 ....................    seconds &= 0x7F;  
-01FE:  BCF    12.7
+01FE:  BCF    11.7
 ....................  
 ....................    delay_us(3);  
 0200:  MOVLW  04
@@ -587,16 +587,16 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 022C:  BCF    F94.3
 ....................    i2c_write(0xD0);      // WR to RTC  
 022E:  MOVLW  D0
-0230:  MOVWF  1A
+0230:  MOVWF  19
 0232:  RCALL  0052
 ....................    i2c_write(0x00);      // REG 0  
-0234:  CLRF   1A
+0234:  CLRF   19
 0236:  RCALL  0052
 ....................    i2c_write(bin2bcd(seconds));     // Start oscillator with current "seconds value  
-0238:  MOVFF  12,19
+0238:  MOVFF  11,18
 023C:  RCALL  014A
-023E:  MOVFF  01,13
-0242:  MOVFF  01,1A
+023E:  MOVFF  01,12
+0242:  MOVFF  01,19
 0246:  RCALL  0052
 ....................    i2c_start();  
 0248:  BSF    F94.4
@@ -621,15 +621,15 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 026E:  BCF    F94.3
 ....................    i2c_write(0xD0);      // WR to RTC  
 0270:  MOVLW  D0
-0272:  MOVWF  1A
+0272:  MOVWF  19
 0274:  RCALL  0052
 ....................    i2c_write(0x07);      // Control Register  
 0276:  MOVLW  07
-0278:  MOVWF  1A
+0278:  MOVWF  19
 027A:  RCALL  0052
 ....................    i2c_write(0x80);     // Disable squarewave output pin  
 027C:  MOVLW  80
-027E:  MOVWF  1A
+027E:  MOVWF  19
 0280:  RCALL  0052
 ....................    i2c_stop();  
 0282:  BCF    F94.4
@@ -650,15 +650,15 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 02A0:  BRA    029E
 ....................  
 .................... }  
-02A2:  GOTO   0B0E (RETURN)
+02A2:  GOTO   0B2E (RETURN)
 ....................  
 .................... void ds1307_set_date_time(BYTE day, BYTE mth, BYTE year, BYTE dow, BYTE hr, BYTE min, BYTE sec)  
 .................... {  
 ....................   sec &= 0x7F;  
-02A6:  BCF    18.7
+02A6:  BCF    17.7
 ....................   hr &= 0x3F;  
 02A8:  MOVLW  3F
-02AA:  ANDWF  16,F
+02AA:  ANDWF  15,F
 ....................  
 ....................   i2c_start();  
 02AC:  BSF    F94.4
@@ -681,56 +681,56 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 02CE:  BCF    F94.3
 ....................   i2c_write(0xD0);            // I2C write address  
 02D0:  MOVLW  D0
-02D2:  MOVWF  1A
+02D2:  MOVWF  19
 02D4:  RCALL  0052
 ....................   i2c_write(0x00);            // Start at REG 0 - Seconds  
-02D6:  CLRF   1A
+02D6:  CLRF   19
 02D8:  RCALL  0052
 ....................   i2c_write(bin2bcd(sec));      // REG 0  
-02DA:  MOVFF  18,19
+02DA:  MOVFF  17,18
 02DE:  RCALL  014A
-02E0:  MOVFF  01,19
-02E4:  MOVFF  01,1A
+02E0:  MOVFF  01,18
+02E4:  MOVFF  01,19
 02E8:  RCALL  0052
 ....................   i2c_write(bin2bcd(min));      // REG 1  
-02EA:  MOVFF  17,19
+02EA:  MOVFF  16,18
 02EE:  RCALL  014A
-02F0:  MOVFF  01,19
-02F4:  MOVFF  01,1A
+02F0:  MOVFF  01,18
+02F4:  MOVFF  01,19
 02F8:  RCALL  0052
 ....................   i2c_write(bin2bcd(hr));      // REG 2  
-02FA:  MOVFF  16,19
+02FA:  MOVFF  15,18
 02FE:  RCALL  014A
-0300:  MOVFF  01,19
-0304:  MOVFF  01,1A
+0300:  MOVFF  01,18
+0304:  MOVFF  01,19
 0308:  RCALL  0052
 ....................   i2c_write(bin2bcd(dow));      // REG 3  
-030A:  MOVFF  15,19
+030A:  MOVFF  14,18
 030E:  RCALL  014A
-0310:  MOVFF  01,19
-0314:  MOVFF  01,1A
+0310:  MOVFF  01,18
+0314:  MOVFF  01,19
 0318:  RCALL  0052
 ....................   i2c_write(bin2bcd(day));      // REG 4  
-031A:  MOVFF  12,19
+031A:  MOVFF  11,18
 031E:  RCALL  014A
-0320:  MOVFF  01,19
-0324:  MOVFF  01,1A
+0320:  MOVFF  01,18
+0324:  MOVFF  01,19
 0328:  RCALL  0052
 ....................   i2c_write(bin2bcd(mth));      // REG 5  
-032A:  MOVFF  13,19
+032A:  MOVFF  12,18
 032E:  RCALL  014A
-0330:  MOVFF  01,19
-0334:  MOVFF  01,1A
+0330:  MOVFF  01,18
+0334:  MOVFF  01,19
 0338:  RCALL  0052
 ....................   i2c_write(bin2bcd(year));      // REG 6  
-033A:  MOVFF  14,19
+033A:  MOVFF  13,18
 033E:  RCALL  014A
-0340:  MOVFF  01,19
-0344:  MOVFF  01,1A
+0340:  MOVFF  01,18
+0344:  MOVFF  01,19
 0348:  RCALL  0052
 ....................   i2c_write(0x80);            // REG 7 - Disable squarewave output pin  
 034A:  MOVLW  80
-034C:  MOVWF  1A
+034C:  MOVWF  19
 034E:  RCALL  0052
 ....................   i2c_stop();  
 0350:  BCF    F94.4
@@ -750,7 +750,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 036C:  DECFSZ 00,F
 036E:  BRA    036C
 .................... }  
-0370:  GOTO   0B2E (RETURN)
+0370:  GOTO   0B4E (RETURN)
 ....................  
 .................... void ds1307_get_date(BYTE &day, BYTE &mth, BYTE &year, BYTE &dow)  
 .................... {  
@@ -770,102 +770,102 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 .................... {  
 ....................   i2c_start();  
 *
-09DA:  BSF    F94.4
-09DC:  MOVLW  05
-09DE:  MOVWF  00
-09E0:  DECFSZ 00,F
-09E2:  BRA    09E0
-09E4:  BSF    F94.3
-09E6:  MOVLW  06
-09E8:  MOVWF  00
-09EA:  DECFSZ 00,F
-09EC:  BRA    09EA
-09EE:  BCF    F8B.4
-09F0:  BCF    F94.4
-09F2:  MOVLW  05
-09F4:  MOVWF  00
-09F6:  DECFSZ 00,F
-09F8:  BRA    09F6
-09FA:  BCF    F8B.3
-09FC:  BCF    F94.3
+09F8:  BSF    F94.4
+09FA:  MOVLW  05
+09FC:  MOVWF  00
+09FE:  DECFSZ 00,F
+0A00:  BRA    09FE
+0A02:  BSF    F94.3
+0A04:  MOVLW  06
+0A06:  MOVWF  00
+0A08:  DECFSZ 00,F
+0A0A:  BRA    0A08
+0A0C:  BCF    F8B.4
+0A0E:  BCF    F94.4
+0A10:  MOVLW  05
+0A12:  MOVWF  00
+0A14:  DECFSZ 00,F
+0A16:  BRA    0A14
+0A18:  BCF    F8B.3
+0A1A:  BCF    F94.3
 ....................   i2c_write(0xD0);  
-09FE:  MOVLW  D0
-0A00:  MOVWF  1A
-0A02:  CALL   0052
+0A1C:  MOVLW  D0
+0A1E:  MOVWF  19
+0A20:  CALL   0052
 ....................   i2c_write(0x00);            // Start at REG 0 - Seconds  
-0A06:  CLRF   1A
-0A08:  CALL   0052
+0A24:  CLRF   19
+0A26:  CALL   0052
 ....................   i2c_start();  
-0A0C:  BSF    F94.4
-0A0E:  MOVLW  05
-0A10:  MOVWF  00
-0A12:  DECFSZ 00,F
-0A14:  BRA    0A12
-0A16:  BSF    F94.3
-0A18:  MOVLW  06
-0A1A:  MOVWF  00
-0A1C:  DECFSZ 00,F
-0A1E:  BRA    0A1C
-0A20:  BTFSS  F82.3
-0A22:  BRA    0A20
-0A24:  BCF    F8B.4
-0A26:  BCF    F94.4
-0A28:  MOVLW  05
-0A2A:  MOVWF  00
-0A2C:  DECFSZ 00,F
-0A2E:  BRA    0A2C
-0A30:  BCF    F8B.3
-0A32:  BCF    F94.3
+0A2A:  BSF    F94.4
+0A2C:  MOVLW  05
+0A2E:  MOVWF  00
+0A30:  DECFSZ 00,F
+0A32:  BRA    0A30
+0A34:  BSF    F94.3
+0A36:  MOVLW  06
+0A38:  MOVWF  00
+0A3A:  DECFSZ 00,F
+0A3C:  BRA    0A3A
+0A3E:  BTFSS  F82.3
+0A40:  BRA    0A3E
+0A42:  BCF    F8B.4
+0A44:  BCF    F94.4
+0A46:  MOVLW  05
+0A48:  MOVWF  00
+0A4A:  DECFSZ 00,F
+0A4C:  BRA    0A4A
+0A4E:  BCF    F8B.3
+0A50:  BCF    F94.3
 ....................   i2c_write(0xD1);  
-0A34:  MOVLW  D1
-0A36:  MOVWF  1A
-0A38:  CALL   0052
+0A52:  MOVLW  D1
+0A54:  MOVWF  19
+0A56:  CALL   0052
 ....................   sec = bcd2bin(i2c_read() & 0x7f);  
-0A3C:  MOVLW  01
-0A3E:  MOVWF  00
-0A40:  CALL   00BE
-0A44:  MOVF   01,W
-0A46:  ANDLW  7F
-0A48:  MOVWF  13
-0A4A:  MOVWF  17
-0A4C:  CALL   0124
-0A50:  MOVFF  01,05
+0A5A:  MOVLW  01
+0A5C:  MOVWF  00
+0A5E:  CALL   00BE
+0A62:  MOVF   01,W
+0A64:  ANDLW  7F
+0A66:  MOVWF  12
+0A68:  MOVWF  16
+0A6A:  CALL   0124
+0A6E:  MOVFF  01,05
 ....................   min = bcd2bin(i2c_read() & 0x7f);  
-0A54:  MOVLW  01
-0A56:  MOVWF  00
-0A58:  CALL   00BE
-0A5C:  MOVF   01,W
-0A5E:  ANDLW  7F
-0A60:  MOVWF  13
-0A62:  MOVWF  17
-0A64:  CALL   0124
-0A68:  MOVFF  01,06
+0A72:  MOVLW  01
+0A74:  MOVWF  00
+0A76:  CALL   00BE
+0A7A:  MOVF   01,W
+0A7C:  ANDLW  7F
+0A7E:  MOVWF  12
+0A80:  MOVWF  16
+0A82:  CALL   0124
+0A86:  MOVFF  01,06
 ....................   hr  = bcd2bin(i2c_read(0) & 0x3f);  
-0A6C:  CLRF   00
-0A6E:  CALL   00BE
-0A72:  MOVF   01,W
-0A74:  ANDLW  3F
-0A76:  MOVWF  13
-0A78:  MOVWF  17
-0A7A:  CALL   0124
-0A7E:  MOVFF  01,07
+0A8A:  CLRF   00
+0A8C:  CALL   00BE
+0A90:  MOVF   01,W
+0A92:  ANDLW  3F
+0A94:  MOVWF  12
+0A96:  MOVWF  16
+0A98:  CALL   0124
+0A9C:  MOVFF  01,07
 ....................   i2c_stop();  
-0A82:  BCF    F94.4
-0A84:  NOP   
-0A86:  BSF    F94.3
-0A88:  BTFSS  F82.3
-0A8A:  BRA    0A88
-0A8C:  MOVLW  05
-0A8E:  MOVWF  00
-0A90:  DECFSZ 00,F
-0A92:  BRA    0A90
-0A94:  BRA    0A96
-0A96:  NOP   
-0A98:  BSF    F94.4
-0A9A:  MOVLW  05
-0A9C:  MOVWF  00
-0A9E:  DECFSZ 00,F
-0AA0:  BRA    0A9E
+0AA0:  BCF    F94.4
+0AA2:  NOP   
+0AA4:  BSF    F94.3
+0AA6:  BTFSS  F82.3
+0AA8:  BRA    0AA6
+0AAA:  MOVLW  05
+0AAC:  MOVWF  00
+0AAE:  DECFSZ 00,F
+0AB0:  BRA    0AAE
+0AB2:  BRA    0AB4
+0AB4:  NOP   
+0AB6:  BSF    F94.4
+0AB8:  MOVLW  05
+0ABA:  MOVWF  00
+0ABC:  DECFSZ 00,F
+0ABE:  BRA    0ABC
 ....................  
 .................... }  
 ....................  
@@ -876,32 +876,32 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  
 ....................   temp = binary_value;  
 *
-014A:  MOVFF  19,1A
+014A:  MOVFF  18,19
 ....................   retval = 0;  
-014E:  CLRF   1B
+014E:  CLRF   1A
 ....................  
 ....................   while(1)  
 ....................   {  
 ....................     // Get the tens digit by doing multiple subtraction  
 ....................     // of 10 from the binary value.  
 ....................     if(temp >= 10)  
-0150:  MOVF   1A,W
+0150:  MOVF   19,W
 0152:  SUBLW  09
 0154:  BC    0160
 ....................     {  
 ....................       temp -= 10;  
 0156:  MOVLW  0A
-0158:  SUBWF  1A,F
+0158:  SUBWF  19,F
 ....................       retval += 0x10;  
 015A:  MOVLW  10
-015C:  ADDWF  1B,F
+015C:  ADDWF  1A,F
 ....................     }  
 ....................     else // Get the ones digit by adding the remainder.  
 015E:  BRA    0166
 ....................     {  
 ....................       retval += temp;  
-0160:  MOVF   1A,W
-0162:  ADDWF  1B,F
+0160:  MOVF   19,W
+0162:  ADDWF  1A,F
 ....................       break;  
 0164:  BRA    0168
 ....................     }  
@@ -909,7 +909,7 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 0166:  BRA    0150
 ....................  
 ....................   return(retval);  
-0168:  MOVFF  1B,01
+0168:  MOVFF  1A,01
 .................... }  
 016C:  RETLW  00
 ....................  
@@ -921,30 +921,30 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  
 ....................   temp = bcd_value;  
 *
-0124:  MOVFF  17,18
+0124:  MOVFF  16,17
 ....................   // Shifting upper digit right by 1 is same as multiplying by 8.  
 ....................   temp >>= 1;  
 0128:  BCF    FD8.0
-012A:  RRCF   18,F
+012A:  RRCF   17,F
 ....................   // Isolate the bits for the upper digit.  
 ....................   temp &= 0x78;  
 012C:  MOVLW  78
-012E:  ANDWF  18,F
+012E:  ANDWF  17,F
 ....................  
 ....................   // Now return: (Tens * 8) + (Tens * 2) + Ones  
 ....................  
 ....................   return(temp + (temp >> 2) + (bcd_value & 0x0f));  
-0130:  RRCF   18,W
+0130:  RRCF   17,W
 0132:  MOVWF  00
 0134:  RRCF   00,F
 0136:  MOVLW  3F
 0138:  ANDWF  00,F
 013A:  MOVF   00,W
-013C:  ADDWF  18,W
-013E:  MOVWF  19
-0140:  MOVF   17,W
+013C:  ADDWF  17,W
+013E:  MOVWF  18
+0140:  MOVF   16,W
 0142:  ANDLW  0F
-0144:  ADDWF  19,W
+0144:  ADDWF  18,W
 0146:  MOVWF  01
 .................... }  
 0148:  RETLW  00
@@ -960,91 +960,91 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................  
 .................... disable_interrupts(GLOBAL); 
 *
-084A:  BCF    FF2.6
-084C:  BCF    FF2.7
-084E:  BTFSC  FF2.7
-0850:  BRA    084C
+0866:  BCF    FF2.6
+0868:  BCF    FF2.7
+086A:  BTFSC  FF2.7
+086C:  BRA    0868
 .................... i2c_start(); 
-0852:  BSF    F94.4
-0854:  MOVLW  05
-0856:  MOVWF  00
-0858:  DECFSZ 00,F
-085A:  BRA    0858
-085C:  BSF    F94.3
-085E:  MOVLW  06
-0860:  MOVWF  00
-0862:  DECFSZ 00,F
-0864:  BRA    0862
-0866:  BCF    F8B.4
-0868:  BCF    F94.4
-086A:  MOVLW  05
-086C:  MOVWF  00
-086E:  DECFSZ 00,F
-0870:  BRA    086E
-0872:  BCF    F8B.3
-0874:  BCF    F94.3
+086E:  BSF    F94.4
+0870:  MOVLW  05
+0872:  MOVWF  00
+0874:  DECFSZ 00,F
+0876:  BRA    0874
+0878:  BSF    F94.3
+087A:  MOVLW  06
+087C:  MOVWF  00
+087E:  DECFSZ 00,F
+0880:  BRA    087E
+0882:  BCF    F8B.4
+0884:  BCF    F94.4
+0886:  MOVLW  05
+0888:  MOVWF  00
+088A:  DECFSZ 00,F
+088C:  BRA    088A
+088E:  BCF    F8B.3
+0890:  BCF    F94.3
 .................... i2c_write(0xD0); 
-0876:  MOVLW  D0
-0878:  MOVWF  1A
-087A:  CALL   0052
+0892:  MOVLW  D0
+0894:  MOVWF  19
+0896:  CALL   0052
 .................... i2c_write(addr); 
-087E:  MOVFF  12,1A
-0882:  CALL   0052
+089A:  MOVFF  11,19
+089E:  CALL   0052
 ....................  
 .................... i2c_start(); 
-0886:  BSF    F94.4
-0888:  MOVLW  05
-088A:  MOVWF  00
-088C:  DECFSZ 00,F
-088E:  BRA    088C
-0890:  BSF    F94.3
-0892:  MOVLW  06
-0894:  MOVWF  00
-0896:  DECFSZ 00,F
-0898:  BRA    0896
-089A:  BTFSS  F82.3
-089C:  BRA    089A
-089E:  BCF    F8B.4
-08A0:  BCF    F94.4
-08A2:  MOVLW  05
-08A4:  MOVWF  00
-08A6:  DECFSZ 00,F
-08A8:  BRA    08A6
-08AA:  BCF    F8B.3
-08AC:  BCF    F94.3
+08A2:  BSF    F94.4
+08A4:  MOVLW  05
+08A6:  MOVWF  00
+08A8:  DECFSZ 00,F
+08AA:  BRA    08A8
+08AC:  BSF    F94.3
+08AE:  MOVLW  06
+08B0:  MOVWF  00
+08B2:  DECFSZ 00,F
+08B4:  BRA    08B2
+08B6:  BTFSS  F82.3
+08B8:  BRA    08B6
+08BA:  BCF    F8B.4
+08BC:  BCF    F94.4
+08BE:  MOVLW  05
+08C0:  MOVWF  00
+08C2:  DECFSZ 00,F
+08C4:  BRA    08C2
+08C6:  BCF    F8B.3
+08C8:  BCF    F94.3
 .................... i2c_write(0xD1); 
-08AE:  MOVLW  D1
-08B0:  MOVWF  1A
-08B2:  CALL   0052
+08CA:  MOVLW  D1
+08CC:  MOVWF  19
+08CE:  CALL   0052
 .................... retval = i2c_read(0);   // Don't ACK the last byte read 
-08B6:  CLRF   00
-08B8:  RCALL  00BE
-08BA:  MOVFF  01,13
+08D2:  CLRF   00
+08D4:  CALL   00BE
+08D8:  MOVFF  01,12
 .................... i2c_stop(); 
-08BE:  BCF    F94.4
-08C0:  NOP   
-08C2:  BSF    F94.3
-08C4:  BTFSS  F82.3
-08C6:  BRA    08C4
-08C8:  MOVLW  05
-08CA:  MOVWF  00
-08CC:  DECFSZ 00,F
-08CE:  BRA    08CC
-08D0:  BRA    08D2
-08D2:  NOP   
-08D4:  BSF    F94.4
-08D6:  MOVLW  05
-08D8:  MOVWF  00
-08DA:  DECFSZ 00,F
-08DC:  BRA    08DA
+08DC:  BCF    F94.4
+08DE:  NOP   
+08E0:  BSF    F94.3
+08E2:  BTFSS  F82.3
+08E4:  BRA    08E2
+08E6:  MOVLW  05
+08E8:  MOVWF  00
+08EA:  DECFSZ 00,F
+08EC:  BRA    08EA
+08EE:  BRA    08F0
+08F0:  NOP   
+08F2:  BSF    F94.4
+08F4:  MOVLW  05
+08F6:  MOVWF  00
+08F8:  DECFSZ 00,F
+08FA:  BRA    08F8
 .................... enable_interrupts(GLOBAL); 
-08DE:  MOVLW  C0
-08E0:  IORWF  FF2,F
+08FC:  MOVLW  C0
+08FE:  IORWF  FF2,F
 ....................  
 .................... return(retval); 
-08E2:  MOVFF  13,01
+0900:  MOVFF  12,01
 .................... } 
-08E6:  GOTO   0AA6 (RETURN)
+0904:  GOTO   0AC4 (RETURN)
 ....................  
 ....................  
 ....................   
@@ -1055,224 +1055,233 @@ CCS PCH C Compiler, Version 4.057, 8241               12-mai-13 16:29
 ....................   BYTE month;  
 ....................   BYTE yr;  
 ....................   BYTE dow;  
+....................   int screen = 0; //0-Tela principal, 1-Config. Temperatura, 2-Config. Horario 
 ....................    
 .................... update_clock();  
+.................... float read_temperature(); 
 ....................   
 .................... main() 
 .................... {  
 *
-0AFA:  CLRF   FF8
-0AFC:  BCF    FD0.7
-0AFE:  CLRF   FEA
-0B00:  CLRF   FE9
-0B02:  BSF    FC1.0
-0B04:  BSF    FC1.1
-0B06:  BSF    FC1.2
-0B08:  BCF    FC1.3
+0B18:  CLRF   FF8
+0B1A:  BCF    FD0.7
+0B1C:  CLRF   FEA
+0B1E:  CLRF   FE9
+0B20:  BSF    FC1.0
+0B22:  BSF    FC1.1
+0B24:  BSF    FC1.2
+0B26:  BCF    FC1.3
+0B28:  CLRF   0C
 ....................     
-....................    long int temp; 
 ....................    float temperatura; 
 ....................  
 ....................  
 ....................    
 ....................   ds1307_init();  
-0B0A:  GOTO   016E
+0B2A:  GOTO   016E
 ....................    
 ....................   // Set date for -> 15 June 2005 Tuesday  
 ....................   // Set time for -> 15:20:55  
 ....................   ds1307_set_date_time(18,11,12,2,22,05,55);  
-0B0E:  MOVLW  12
-0B10:  MOVWF  12
-0B12:  MOVLW  0B
-0B14:  MOVWF  13
-0B16:  MOVLW  0C
-0B18:  MOVWF  14
-0B1A:  MOVLW  02
-0B1C:  MOVWF  15
-0B1E:  MOVLW  16
-0B20:  MOVWF  16
-0B22:  MOVLW  05
-0B24:  MOVWF  17
-0B26:  MOVLW  37
-0B28:  MOVWF  18
-0B2A:  GOTO   02A6
+0B2E:  MOVLW  12
+0B30:  MOVWF  11
+0B32:  MOVLW  0B
+0B34:  MOVWF  12
+0B36:  MOVLW  0C
+0B38:  MOVWF  13
+0B3A:  MOVLW  02
+0B3C:  MOVWF  14
+0B3E:  MOVLW  16
+0B40:  MOVWF  15
+0B42:  MOVLW  05
+0B44:  MOVWF  16
+0B46:  MOVLW  37
+0B48:  MOVWF  17
+0B4A:  GOTO   02A6
 ....................  
 ....................  
 ....................    setup_adc(ADC_CLOCK_INTERNAL); 
-0B2E:  BCF    FC1.6
-0B30:  BSF    FC2.6
-0B32:  BSF    FC2.7
-0B34:  BSF    FC1.7
-0B36:  BSF    FC2.0
+0B4E:  BCF    FC1.6
+0B50:  BSF    FC2.6
+0B52:  BSF    FC2.7
+0B54:  BSF    FC1.7
+0B56:  BSF    FC2.0
 ....................    //enables the a/d module  
 ....................    set_adc_channel(0); 
-0B38:  MOVLW  00
-0B3A:  MOVWF  01
-0B3C:  MOVF   FC2,W
-0B3E:  ANDLW  C7
-0B40:  IORWF  01,W
-0B42:  MOVWF  FC2
+0B58:  MOVLW  00
+0B5A:  MOVWF  01
+0B5C:  MOVF   FC2,W
+0B5E:  ANDLW  C7
+0B60:  IORWF  01,W
+0B62:  MOVWF  FC2
 ....................    //the next read_adc call will read channel 0 
 ....................    delay_us(10); 
-0B44:  MOVLW  10
-0B46:  MOVWF  00
-0B48:  DECFSZ 00,F
-0B4A:  BRA    0B48
-0B4C:  NOP   
+0B64:  MOVLW  10
+0B66:  MOVWF  00
+0B68:  DECFSZ 00,F
+0B6A:  BRA    0B68
+0B6C:  NOP   
 ....................    //a small delay is required after setting the channel 
 ....................  
 ....................    //aguarda 500ms 
 ....................    delay_ms(500); 
-0B4E:  MOVLW  02
-0B50:  MOVWF  12
-0B52:  MOVLW  FA
-0B54:  MOVWF  13
-0B56:  RCALL  0374
-0B58:  DECFSZ 12,F
-0B5A:  BRA    0B52
+0B6E:  MOVLW  02
+0B70:  MOVWF  11
+0B72:  MOVLW  FA
+0B74:  MOVWF  12
+0B76:  CALL   0374
+0B7A:  DECFSZ 11,F
+0B7C:  BRA    0B72
 ....................     
 ....................    //inicializa o display LCD 
 ....................    inic_display(); 
-0B5C:  BRA    0430
+0B7E:  BRA    0430
 ....................  
 ....................  
 ....................    while (true) 
 ....................    { 
-....................  
-....................       //starts the conversion and reads the result 
-....................       temp = read_adc(); 
-0B5E:  BSF    FC2.2
-0B60:  BTFSC  FC2.2
-0B62:  BRA    0B60
-0B64:  MOVFF  FC3,0C
-0B68:  MOVFF  FC4,0D
-....................  
-....................       //faz o calculo para converter a tensao em graus celsius 
-....................       temperatura = temp;//((temp - 50) * 8.9)/ 100; 
-0B6C:  MOVFF  0D,13
-0B70:  MOVFF  0C,12
-0B74:  BRA    04D8
-0B76:  MOVFF  03,11
-0B7A:  MOVFF  02,10
-0B7E:  MOVFF  01,0F
-0B82:  MOVFF  00,0E
+....................       temperatura = read_temperature(); 
+0B80:  BRA    0510
+0B82:  MOVFF  03,10
+0B86:  MOVFF  02,0F
+0B8A:  MOVFF  01,0E
+0B8E:  MOVFF  00,0D
 ....................  
 ....................       //envia o cursor do LCD para a posicao 0,0 
 ....................       display(0,0x80); 
-0B86:  CLRF   21
-0B88:  MOVLW  80
-0B8A:  MOVWF  22
-0B8C:  RCALL  03B4
+0B92:  CLRF   20
+0B94:  MOVLW  80
+0B96:  MOVWF  21
+0B98:  RCALL  03B4
 ....................  
 ....................       //imprime na tela a temperatura 
 ....................       printf(mostra,"Temperatura: %.1lfC   ",temperatura); 
-0B8E:  CLRF   12
-0B90:  MOVF   12,W
-0B92:  CALL   0004
-0B96:  INCF   12,F
-0B98:  MOVWF  00
-0B9A:  MOVWF  20
-0B9C:  RCALL  0510
-0B9E:  MOVLW  0D
-0BA0:  SUBWF  12,W
-0BA2:  BNZ   0B90
-0BA4:  MOVLW  89
-0BA6:  MOVWF  FE9
-0BA8:  MOVFF  11,16
-0BAC:  MOVFF  10,15
-0BB0:  MOVFF  0F,14
-0BB4:  MOVFF  0E,13
-0BB8:  MOVLW  01
-0BBA:  MOVWF  17
-0BBC:  BRA    06CA
-0BBE:  MOVLW  12
-0BC0:  MOVWF  13
-0BC2:  MOVF   13,W
-0BC4:  CALL   0004
-0BC8:  INCF   13,F
-0BCA:  MOVWF  00
-0BCC:  MOVWF  20
-0BCE:  RCALL  0510
-0BD0:  MOVLW  16
-0BD2:  SUBWF  13,W
-0BD4:  BNZ   0BC2
+0B9A:  CLRF   11
+0B9C:  MOVF   11,W
+0B9E:  CALL   0004
+0BA2:  INCF   11,F
+0BA4:  MOVWF  00
+0BA6:  MOVWF  1F
+0BA8:  RCALL  052C
+0BAA:  MOVLW  0D
+0BAC:  SUBWF  11,W
+0BAE:  BNZ   0B9C
+0BB0:  MOVLW  89
+0BB2:  MOVWF  FE9
+0BB4:  MOVFF  10,15
+0BB8:  MOVFF  0F,14
+0BBC:  MOVFF  0E,13
+0BC0:  MOVFF  0D,12
+0BC4:  MOVLW  01
+0BC6:  MOVWF  16
+0BC8:  BRA    06E6
+0BCA:  MOVLW  12
+0BCC:  MOVWF  12
+0BCE:  MOVF   12,W
+0BD0:  CALL   0004
+0BD4:  INCF   12,F
+0BD6:  MOVWF  00
+0BD8:  MOVWF  1F
+0BDA:  RCALL  052C
+0BDC:  MOVLW  16
+0BDE:  SUBWF  12,W
+0BE0:  BNZ   0BCE
 ....................        
 ....................       //envia o cursor do LCD para a posicao 1,0 
 ....................       display(0,0xC0); 
-0BD6:  CLRF   21
-0BD8:  MOVLW  C0
-0BDA:  MOVWF  22
-0BDC:  CALL   03B4
+0BE2:  CLRF   20
+0BE4:  MOVLW  C0
+0BE6:  MOVWF  21
+0BE8:  CALL   03B4
 ....................  
 ....................       //imprime na tela a temperatura 
 ....................       update_clock(); 
-0BE0:  BRA    09DA
+0BEC:  BRA    09F8
 ....................  
 ....................       //alterna o estado do pino D4 
 ....................       output_toggle(PIN_a4); 
-0BE2:  BCF    F92.4
-0BE4:  BTG    F89.4
+0BEE:  BCF    F92.4
+0BF0:  BTG    F89.4
 ....................  
 ....................       //aguarda 500ms 
 ....................       delay_ms (500); 
-0BE6:  MOVLW  02
-0BE8:  MOVWF  12
-0BEA:  MOVLW  FA
-0BEC:  MOVWF  13
-0BEE:  CALL   0374
-0BF2:  DECFSZ 12,F
-0BF4:  BRA    0BEA
+0BF2:  MOVLW  02
+0BF4:  MOVWF  11
+0BF6:  MOVLW  FA
+0BF8:  MOVWF  12
+0BFA:  CALL   0374
+0BFE:  DECFSZ 11,F
+0C00:  BRA    0BF6
 ....................    } 
-0BF6:  BRA    0B5E
+0C02:  BRA    0B80
 .................... } 
 ....................  
 .................... update_clock(){ 
 ....................     //ds1307_get_date(day,month,yr,dow);  
-0BF8:  SLEEP 
+0C04:  SLEEP 
 ....................     ds1307_get_time(hrs,min,sec);  
 ....................        
 ....................     sec = ds1307_read_byte(0); 
 *
-0AA2:  CLRF   12
-0AA4:  BRA    084A
-0AA6:  MOVFF  01,05
+0AC0:  CLRF   11
+0AC2:  BRA    0866
+0AC4:  MOVFF  01,05
 ....................     sec = bcd2bin(sec); 
-0AAA:  MOVFF  05,17
-0AAE:  CALL   0124
-0AB2:  MOVFF  01,05
+0AC8:  MOVFF  05,16
+0ACC:  CALL   0124
+0AD0:  MOVFF  01,05
 ....................        
 ....................     //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr);  
 ....................     printf(mostra,"Hora: \%02d:\%02d:\%02d", hrs,min,sec);  
-0AB6:  CLRF   12
-0AB8:  MOVF   12,W
-0ABA:  CALL   002C
-0ABE:  INCF   12,F
-0AC0:  MOVWF  00
-0AC2:  MOVWF  20
-0AC4:  RCALL  0510
-0AC6:  MOVLW  06
-0AC8:  SUBWF  12,W
-0ACA:  BNZ   0AB8
-0ACC:  MOVFF  07,13
-0AD0:  MOVLW  01
-0AD2:  MOVWF  14
-0AD4:  RCALL  0912
-0AD6:  MOVLW  3A
-0AD8:  MOVWF  20
-0ADA:  RCALL  0510
-0ADC:  MOVFF  06,13
-0AE0:  MOVLW  01
-0AE2:  MOVWF  14
-0AE4:  RCALL  0912
-0AE6:  MOVLW  3A
-0AE8:  MOVWF  20
-0AEA:  RCALL  0510
-0AEC:  MOVFF  05,13
-0AF0:  MOVLW  01
-0AF2:  MOVWF  14
-0AF4:  RCALL  0912
+0AD4:  CLRF   11
+0AD6:  MOVF   11,W
+0AD8:  CALL   002C
+0ADC:  INCF   11,F
+0ADE:  MOVWF  00
+0AE0:  MOVWF  1F
+0AE2:  RCALL  052C
+0AE4:  MOVLW  06
+0AE6:  SUBWF  11,W
+0AE8:  BNZ   0AD6
+0AEA:  MOVFF  07,12
+0AEE:  MOVLW  01
+0AF0:  MOVWF  13
+0AF2:  RCALL  0930
+0AF4:  MOVLW  3A
+0AF6:  MOVWF  1F
+0AF8:  RCALL  052C
+0AFA:  MOVFF  06,12
+0AFE:  MOVLW  01
+0B00:  MOVWF  13
+0B02:  RCALL  0930
+0B04:  MOVLW  3A
+0B06:  MOVWF  1F
+0B08:  RCALL  052C
+0B0A:  MOVFF  05,12
+0B0E:  MOVLW  01
+0B10:  MOVWF  13
+0B12:  RCALL  0930
 .................... } 
-0AF6:  GOTO   0BE2 (RETURN)
+0B14:  GOTO   0BEE (RETURN)
+....................  
+.................... float read_temperature() { 
+....................    long int temp; 
+....................    //starts the conversion and reads the result 
+....................    temp = read_adc(); 
+*
+0510:  BSF    FC2.2
+0512:  BTFSC  FC2.2
+0514:  BRA    0512
+0516:  MOVFF  FC3,11
+051A:  MOVFF  FC4,12
+....................  
+....................    //faz o calculo para converter a tensao em graus celsius 
+....................    return(temp);//((temp - 50) * 8.9)/ 100; 
+051E:  MOVFF  12,14
+0522:  MOVFF  11,13
+0526:  BRA    04D8
+.................... } 
+0528:  GOTO   0B82 (RETURN)
 
 Configuration Fuses:
    Word  1: 2200   HS NOOSCSEN
