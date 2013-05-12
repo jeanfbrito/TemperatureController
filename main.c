@@ -5,12 +5,6 @@
 #include <lcd_generico.c>
 #include "ds1307.c"
  
-main()
-{ 
-   
-   long int temp;
-   float temperatura;
-
   BYTE sec; 
   BYTE min; 
   BYTE hrs; 
@@ -18,6 +12,16 @@ main()
   BYTE month; 
   BYTE yr; 
   BYTE dow; 
+  
+update_clock(); 
+ 
+main()
+{ 
+   
+   long int temp;
+   float temperatura;
+
+
   
   ds1307_init(); 
   
@@ -47,7 +51,7 @@ main()
       temp = read_adc();
 
       //faz o calculo para converter a tensao em graus celsius
-      temperatura = ((temp - 50) * 8.9)/ 100;
+      temperatura = temp;//((temp - 50) * 8.9)/ 100;
 
       //envia o cursor do LCD para a posicao 0,0
       display(0,0x80);
@@ -59,19 +63,23 @@ main()
       display(0,0xC0);
 
       //imprime na tela a temperatura
-    //ds1307_get_date(day,month,yr,dow); 
-    ds1307_get_time(hrs,min,sec); 
-      
-      sec = ds1307_read_byte(0);
-      sec = bcd2bin(sec);
-      
-    //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-    printf(mostra,"Hora: \%02d:\%02d:\%02d", hrs,min,sec); 
+      update_clock();
 
       //alterna o estado do pino D4
-      output_toggle(PIN_D4);
+      output_toggle(PIN_a4);
 
       //aguarda 500ms
       delay_ms (500);
    }
+}
+
+update_clock(){
+    //ds1307_get_date(day,month,yr,dow); 
+    ds1307_get_time(hrs,min,sec); 
+      
+    sec = ds1307_read_byte(0);
+    sec = bcd2bin(sec);
+      
+    //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
+    printf(mostra,"Hora: \%02d:\%02d:\%02d", hrs,min,sec); 
 }
