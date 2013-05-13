@@ -19,7 +19,8 @@ Função para utilização do display LCD para qualquer tamanho
 
    Primeira linha = 0x80
    Segunda  linha = 0xC0
-
+   Terceira linha = 0xA0
+   Quarta linha   = 0xE0
 
 Aprimorado por Cleber Toss Hoffmann
 cleber.toss.hoffmann@gmail.com

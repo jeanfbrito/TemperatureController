@@ -1,32 +1,167 @@
 000     @SCRATCH
- na     display.@SCRATCH1
- na     @I2C_READ_1.@SCRATCH2
- na     ds1307_init.@SCRATCH1
- na     ds1307_set_date_time.@SCRATCH1
- na     ds1307_get_time.@SCRATCH2
- na     bcd2bin.@SCRATCH1
- na     update_clock.@SCRATCH1
- na     @DIV88.@SCRATCH1
- na     @PRINTF_D_52.@SCRATCH4
 001     @SCRATCH
+001     _RETURN_
 002     @SCRATCH
 003     @SCRATCH
 004     @SCRATCH
+005     sec
+006     min
+007     hrs
+008     day
+009     month
+00A     yr
+00B     dow
+00C     temperatura_maxima
+00D     tela
+00E-011 temperatura
+012     configure_time.state
+013     configure_temperature.state
+014-015 read_temperature.adc
+014     @delay_ms1.P1
+014     @delay_us1.P2
+014     ds1307_set_date_time.day
+014     ds1307_init.seconds
+014     ds1307_read_byte.addr
+014     ds1307_get_date.@SCRATCH1
+014     ds1307_get_time.@SCRATCH1
+014     show_temperature.@SCRATCH1
+014     show_clock.@SCRATCH1
+014     configure_time.@SCRATCH1
+014     configure_temperature.@SCRATCH1
+015     @PRINTF_D_52.P1
+015     ds1307_set_date_time.mth
+015-018 @PRINTF_L32D_52FPFPF.P1
+015     ds1307_read_byte.retval
+015     ds1307_init.@SCRATCH1
+015     ds1307_get_date.@SCRATCH2
+015     ds1307_get_time.@SCRATCH2
+015     show_temperature.@SCRATCH2
+015     show_clock.@SCRATCH2
+015     configure_time.@SCRATCH2
+015     configure_temperature.@SCRATCH2
+016     ds1307_set_date_time.year
+016-017 @ITOF.P1
+016     @PRINTF_D_52.P2
+016     read_temperature.@SCRATCH1
+017-018 @PRINTF_LD_52.P1
+017     ds1307_set_date_time.dow
+017     read_temperature.@SCRATCH2
+017     @PRINTF_D_52.@SCRATCH1
+018     @I2C_READ_1.P1
+018     ds1307_set_date_time.hr
+018     @PRINTF_D_52.@SCRATCH2
+019     ds1307_set_date_time.min
+019     @PRINTF_L32D_52FPFPF.P1
+019     @I2C_READ_1.@SCRATCH1
+019     @PRINTF_LD_52.@SCRATCH1
+019     @PRINTF_D_52.@SCRATCH3
+01A     bcd2bin.bcd_value
+01A     ds1307_set_date_time.sec
+01A     @I2C_READ_1.@SCRATCH2
+01A     @PRINTF_LD_52.@SCRATCH2
+01A     @PRINTF_L32D_52FPFPF.@SCRATCH1
+01A     @PRINTF_D_52.@SCRATCH4
+01B     @DIV88.P1
+01B     bin2bcd.binary_value
+01B     bcd2bin.temp
+01B     ds1307_set_date_time.@SCRATCH1
+01B     @PRINTF_LD_52.@SCRATCH3
+01B     @PRINTF_L32D_52FPFPF.@SCRATCH2
+01C     @I2C_WRITE_1.P1
+01C     bin2bcd.temp
+01C     @DIV88.P1
+01C     bcd2bin.@SCRATCH1
+01C     @PRINTF_LD_52.@SCRATCH4
+01C     @PRINTF_L32D_52FPFPF.@SCRATCH3
+01D     bin2bcd.retval
+01D     @PRINTF_LD_52.@SCRATCH5
+01D     @PRINTF_L32D_52FPFPF.@SCRATCH4
+01D     @DIV88.@SCRATCH1
+01E     @PRINTF_LD_52.@SCRATCH6
+01E     @PRINTF_L32D_52FPFPF.@SCRATCH5
+01F     @PRINTF_LD_52.@SCRATCH7
+01F     @PRINTF_L32D_52FPFPF.@SCRATCH6
+020     @PRINTF_L32D_52FPFPF.@SCRATCH7
+021     @PRINTF_L32D_52FPFPF.@SCRATCH8
+022-025 @DIV3232.P1
+022-025 @FTOSD.P2
+022     mostra.dado
+022-025 @MULFF.P1
+023     display.tipo
+024     display.dado
+025     display.temp
+026-029 @MULFF.P1
+026-029 @DIV3232.P2
+026     display.@SCRATCH1
+026     @FTOSD.@SCRATCH1
+02A     @MULFF.@SCRATCH1
+02A     @DIV3232.@SCRATCH1
+02B     @MULFF.@SCRATCH2
+02B     @DIV3232.@SCRATCH2
+02C     @MULFF.@SCRATCH3
+02C     @DIV3232.@SCRATCH3
+02D     @DIV3232.@SCRATCH4
+02E     @DIV3232.@SCRATCH5
 F81     PORTB
 F83     PSP_DATA
 F93     TRISB
-FBB     CCP_2_LOW
 FBB-FBC CCP_2
+FBB     CCP_2_LOW
 FBC     CCP_2_HIGH
-FBE-FBF CCP_1
 FBE     CCP_1_LOW
+FBE-FBF CCP_1
 FBF     CCP_1_HIGH
 FE9-FEA @READ_PROGRAM_MEMORY.P1
 FE9-FEA @WRITE_PROGRAM_MEMORY.P2
-FF6-FF8 @READ_PROGRAM_MEMORY.P1
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
+0484  @delay_ms1
+04AA  @delay_us1
+0540  inic_display
+04C4  display
+0944  mostra
+029C  @I2C_READ_1
+0230  @I2C_WRITE_1
+034C  ds1307_init
+0F72  ds1307_set_date_time
+0682  ds1307_get_date
+074E  ds1307_get_time
+0328  bin2bcd
+0302  bcd2bin
+05E8  ds1307_read_byte
+148E  MAIN
+0A3C  read_temperature
+081A  @ITOF
+0852  @MULFF
+0004  @const113
+0950  @PRINTF_LD_52
+0D06  show_temperature
+0022  @const116
+0ACC  @FTOSD
+0B0C  @DIV3232
+0B86  @PRINTF_L32D_52FPFPF
+0682  update_clock
+0E4C  show_clock
+004A  @const125
+0D5C  @DIV88
+0D84  @PRINTF_D_52
+1062  configure_time
+0074  @const133
+0098  @const134
+00CC  @const135
+00F4  @const136
+011A  @const137
+0144  @const138
+016A  @const139
+0190  @const140
+01B6  @const141
+1464  @goto10498
+0EB2  configure_temperature
+01DC  @const144
+0204  @const145
+148E  @cinit
 
 Project Directory:
     C:\Users\Jean\Documents\GitHub\TemperatureController\
@@ -51,4 +186,10 @@ Compiler Settings:
 Output Files:
     Errors:      main.err
     Ext Symbols: main.esym
+    INHX32:      main.hex
     Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.PJT
+    Call Tree:   main.tre
+    Statistics:  main.sta

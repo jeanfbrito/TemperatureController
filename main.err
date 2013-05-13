@@ -1,16 +1,10 @@
 >>> Warning 203 "C:\Users\Jean\Documents\GitHub\TemperatureController\ds1307.c" Line 110(1,1): Condition always TRUE
->>> Warning 208 "main.c" Line 30(1,5): Function not void and does not return a value  MAIN
->>> Warning 208 "main.c" Line 22(1,13): Function not void and does not return a value  update_clock
->>> Warning 205 "main.c" Line 140(1,1): Unsigned variable is never less than zero
->>> Warning 204 "main.c" Line 141(1,1): Condition always FALSE
->>> Warning 205 "main.c" Line 154(1,1): Unsigned variable is never less than zero
->>> Warning 204 "main.c" Line 155(1,1): Condition always FALSE
->>> Warning 205 "main.c" Line 168(1,1): Unsigned variable is never less than zero
->>> Warning 204 "main.c" Line 169(1,1): Condition always FALSE
->>> Warning 205 "main.c" Line 210(1,1): Unsigned variable is never less than zero
->>> Warning 204 "main.c" Line 211(1,1): Condition always FALSE
->>> Warning 208 "main.c" Line 28(1,15): Function not void and does not return a value  configure_time
->>> Warning 208 "main.c" Line 27(1,22): Function not void and does not return a value  configure_temperature
->>> Warning 202 "main.c" Line 18(6,9): Variable never used:   dow
-*** Error 112 "main.c" Line 64(1,1): Function used but not defined:  ... check_temperature  SCR=707
-      1 Errors,  14 Warnings.
+>>> Warning 208 "main.c" Line 31(1,5): Function not void and does not return a value  MAIN
+>>> Warning 208 "main.c" Line 24(1,17): Function not void and does not return a value  read_temperature
+>>> Warning 208 "main.c" Line 27(1,17): Function not void and does not return a value  show_temperature
+>>> Warning 208 "main.c" Line 23(1,13): Function not void and does not return a value  update_clock
+>>> Warning 208 "main.c" Line 26(1,11): Function not void and does not return a value  show_clock
+>>> Warning 208 "main.c" Line 29(1,15): Function not void and does not return a value  configure_time
+>>> Warning 208 "main.c" Line 28(1,22): Function not void and does not return a value  configure_temperature
+      Memory usage:   ROM=17%      RAM=1% - 3%
+      0 Errors,  8 Warnings.
