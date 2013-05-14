@@ -110,17 +110,19 @@ long int adc;
 float formula;
 
   adc = read_adc();
-  formula = ((adc - 200) * 0.001 );
-  temperatura = adc * (0.03 + formula);
+  formula = ((adc - 220) * 0.0007 );
+  if(formula < 0)
+   formula = 0;
+  temperatura = adc * (0.049 + formula);
 
   //envia o cursor do LCD para a posicao 0,0
-  display(0,0xA0);
+  //display(0,0xA0);
 //imprime na tela a temperatura
-  printf(mostra,"ADC: %ld    ",adc);
+  //printf(mostra,"ADC: %ld    ",adc);
   //envia o cursor do LCD para a posicao 0,0
-  display(0,0xD0);
+  //display(0,0xD0);
 //imprime na tela a temperatura
-  printf(mostra,"form: %f    ",formula);
+  //printf(mostra,"form: %f    ",formula);
   
 }
 
@@ -129,7 +131,7 @@ show_temperature(){
 //envia o cursor do LCD para a posicao 0,0
   display(0,0x80);
 //imprime na tela a temperatura
-  printf(mostra,"Temperatura: %.1lfC    ",temperatura);
+  printf(mostra,"Temperatura: %.0lfC    ",temperatura);
 }
 
 update_clock(){
@@ -283,7 +285,7 @@ configure_time() {
       //envia o cursor do LCD para a posicao 1,0
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Salvar? + SIM, - NAO"); 
+      printf(mostra,"Salvar? - NAO, + SIM"); 
       if(TECLA_MAIS){
         ds1307_set_date_time(day,month,yr,dow,hrs,min,sec);
         tela = 0;

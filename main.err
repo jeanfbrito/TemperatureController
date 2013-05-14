@@ -7,5 +7,5 @@
 >>> Warning 208 "main.c" Line 36(1,11): Function not void and does not return a value  show_clock
 >>> Warning 208 "main.c" Line 39(1,15): Function not void and does not return a value  configure_time
 >>> Warning 208 "main.c" Line 38(1,22): Function not void and does not return a value  configure_temperature
-      Memory usage:   ROM=20%      RAM=1% - 4%
+      Memory usage:   ROM=19%      RAM=1% - 3%
       0 Errors,  9 Warnings.
