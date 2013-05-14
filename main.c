@@ -1,14 +1,21 @@
 #include <18f452.h>
-#include <math.h>
 #device ADC=10
 #use delay(clock=20000000)
 #fuses HS,NOWDT,PUT
 #include <lcd_generico.c>
+#include <math.h>
 #include "ds1307.c"
 
 #define TECLA_SET    !input(PIN_D0)
 #define TECLA_MAIS   !input(PIN_D3)
 #define TECLA_MENOS  !input(PIN_D2)
+
+#define SAIDA01 PIN_D1
+
+#define POTENTIAL_DIVIDER_RESISTOR 10000
+#define THERMISTOR_B_VALUE 3977
+#define THERMISTOR_REF_TEMP 298.15
+#define THERMISTOR_REF_RESISTANCE 10000
 
 BYTE sec; 
 BYTE min; 
@@ -17,9 +24,11 @@ BYTE day;
 BYTE month; 
 BYTE yr; 
 BYTE dow; 
-int temperatura_maxima;
+int temperatura_maxima = 30;
 int tela = 0; //0-Tela principal, 1-Config. Temperatura, 2-Config. Horario
 float temperatura;
+
+int histerese = 3;
 
 update_clock(); 
 read_temperature();
@@ -31,8 +40,6 @@ configure_time();
 
 main()
 { 
-
-
 ds1307_init(); 
 
 // Set date for -> 15 June 2005 Tuesday 
@@ -61,7 +68,7 @@ ds1307_init();
         display(0,0x01);
         update_clock();
         read_temperature();
-        //check_temperature();
+        check_temperature();
         show_temperature();
         show_clock();
 
@@ -84,24 +91,39 @@ ds1307_init();
     }
 
 //alterna o estado do pino D4
-    output_toggle(PIN_D1);
+    //output_toggle(PIN_D1);
 
 //aguarda 500ms
     delay_ms (200);
   }
 }
 
+check_temperature(){
+  if(temperatura < temperatura_maxima - histerese)
+    output_high(SAIDA01);
+  else if(temperatura > temperatura_maxima)
+    output_low(SAIDA01);
+}
+
 read_temperature() {
-  long int adc;
-//starts the conversion and reads the result
+long int adc;
+float formula;
+
   adc = read_adc();
-//faz o calculo para converter a tensao em graus celsius
-  temperatura = adc * 0.0488;//((temp - 50) * 8.9)/ 100;
+  formula = ((adc - 200) * 0.001 );
+  temperatura = adc * (0.03 + formula);
+
   //envia o cursor do LCD para a posicao 0,0
   display(0,0xA0);
 //imprime na tela a temperatura
   printf(mostra,"ADC: %ld    ",adc);
+  //envia o cursor do LCD para a posicao 0,0
+  display(0,0xD0);
+//imprime na tela a temperatura
+  printf(mostra,"form: %f    ",formula);
+  
 }
+
 
 show_temperature(){
 //envia o cursor do LCD para a posicao 0,0
