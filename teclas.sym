@@ -1,0 +1,111 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005-006 tecla_menos_tempo
+007-008 tecla_mais_tempo
+009-00A tecla_set_tempo
+00B.0   tecla_menos_status
+00B.1   tecla_mais_status
+00B.2   tecla_set_status
+00B.3   tecla_menos_state
+00B.4   tecla_mais_state
+00B.5   tecla_set_state
+00C     @delay_us1.P1
+00C     @delay_ms1.P2
+00C     MAIN.@SCRATCH1
+00D     MAIN.@SCRATCH2
+00E-00F @PRINTF_LD_52.P1
+00E     MAIN.@SCRATCH3
+00F     MAIN.@SCRATCH4
+010     MAIN.@SCRATCH5
+010     @PRINTF_LD_52.@SCRATCH1
+011     @PRINTF_D_52.P1
+011     @PRINTF_LD_52.@SCRATCH2
+012     @PRINTF_D_52.P1
+012     @PRINTF_LD_52.@SCRATCH3
+013     @PRINTF_D_52.@SCRATCH1
+013     @PRINTF_LD_52.@SCRATCH4
+014     @PRINTF_D_52.@SCRATCH2
+014     @PRINTF_LD_52.@SCRATCH5
+015     @PRINTF_D_52.@SCRATCH3
+015     @PRINTF_LD_52.@SCRATCH6
+016     @PRINTF_D_52.@SCRATCH4
+016     @PRINTF_LD_52.@SCRATCH7
+017     @DIV88.P1
+017     mostra.dado
+018     display.tipo
+018     @DIV88.P1
+019     display.dado
+019     @DIV88.@SCRATCH1
+01A     display.temp
+01B     display.@SCRATCH1
+F81     PORTB
+F83     PSP_DATA
+F93     TRISB
+FBB     CCP_2_LOW
+FBB-FBC CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE-FBF CCP_1
+FBF     CCP_1_HIGH
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+00FE  @delay_ms1
+0124  @delay_us1
+01BA  inic_display
+013E  display
+0366  mostra
+0262  verifica_teclas
+0524  MAIN
+033E  @DIV88
+0372  @PRINTF_D_52
+0004  @const242
+002A  @const243
+043A  @PRINTF_LD_52
+0052  @const246
+006A  @const247
+0084  @const248
+009E  @const249
+00BA  @const250
+00D0  @const251
+00E6  @const252
+0524  @cinit
+
+Project Directory:
+    C:\Users\Jean\Documents\GitHub\TemperatureController\
+
+Project Files:
+    teclas.c
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\18f452.h
+    lcd_generico.c
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\math.h
+    ds1307.c
+
+Units:
+    teclas.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      teclas.err
+    Ext Symbols: teclas.esym
+    INHX32:      teclas.hex
+    Symbols:     teclas.sym
+    List:        teclas.lst
+    Debug/COFF:  teclas.cof
+    Project:     teclas.PJT
+    Call Tree:   teclas.tre
+    Statistics:  teclas.sta

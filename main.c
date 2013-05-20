@@ -17,6 +17,23 @@
 #define THERMISTOR_REF_TEMP 298.15
 #define THERMISTOR_REF_RESISTANCE 10000
 
+#define DEBOUNCE 2
+
+long int tecla_menos_tempo = DEBOUNCE;
+long int tecla_mais_tempo = DEBOUNCE;
+long int tecla_set_tempo = DEBOUNCE;
+
+int1 tecla_menos_status = false;
+int1 tecla_mais_status = false;
+int1 tecla_set_status = false;
+
+int1 tecla_menos_state = false;
+int1 tecla_mais_state = false;
+int1 tecla_set_state = false;
+
+int1 entrar_temperatura = true;
+int1 entrar_relogio = true;
+
 BYTE sec; 
 BYTE min; 
 BYTE hrs; 
@@ -37,6 +54,7 @@ show_clock();
 show_temperature();
 configure_temperature();
 configure_time();
+verifica_teclas();
 
 main()
 { 
@@ -72,12 +90,12 @@ ds1307_init();
         show_temperature();
         show_clock();
 
-        if(TECLA_SET)
-          tela = 1;
-        else if(TECLA_MAIS)
-          tela = 1;
-        else if (TECLA_MENOS)
+        if(tecla_set_status && !tecla_menos_status && tecla_mais_status)
           tela = 2;
+
+        if(tecla_set_status && tecla_menos_status && !tecla_mais_status)
+          tela = 1;
+        
 
         break;
       case 1:
@@ -93,8 +111,10 @@ ds1307_init();
 //alterna o estado do pino D4
     //output_toggle(PIN_D1);
 
+    verifica_teclas();
+
 //aguarda 500ms
-    delay_ms (200);
+    delay_ms (100);
   }
 }
 
@@ -165,31 +185,31 @@ configure_time() {
   //envia o cursor do LCD para a posicao 1,0
   display(0,0xC0);
   //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-  printf(mostra,"H\%02d:\%02d:\%02d D\%02d/\%02d/\%02d    ", hrs,min,sec,day,month,yr); 
+  printf(mostra,"H\%02d:\%02d:\%02d D\%02d/\%02d/\%02d       ", hrs,min,sec,day,month,yr); 
 
 
   switch(state){
     case 0: //menu superior
-      if(TECLA_SET)
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 1;
-      else if(TECLA_MAIS)
-        tela = 0;
-      else if(TECLA_MENOS)
-        tela = 1;
+      // else if(TECLA_MAIS)
+      //   tela = 0;
+      // else if(TECLA_MENOS)
+      //   tela = 1;
       break;
 
     case 1: //hora
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Horas:\%02d            ", hrs);
-      if(TECLA_SET)
+      printf(mostra,"Horas:\%02d              ", hrs);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 2;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         hrs++;
         if(hrs > 23)
           hrs = 0;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         hrs--;
         if(hrs == -1)
           hrs = 23;
@@ -198,15 +218,15 @@ configure_time() {
     case 2: //minuto
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Minutos:\%02d         ", min);
-      if(TECLA_SET)
+      printf(mostra,"Minutos:\%02d            ", min);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 3;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         min++;
         if(min > 59)
           min = 0;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         min--;
         if(min == -1)
           min = 59;
@@ -215,15 +235,15 @@ configure_time() {
     case 3: //segundo
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Segundos:\%02d            ", sec);
-      if(TECLA_SET)
+      printf(mostra,"Segundos:\%02d               ", sec);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 4;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         sec++;
         if(sec > 59)
           sec = 0;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         sec--;
         if(sec == -1)
           sec = 59;
@@ -232,15 +252,15 @@ configure_time() {
     case 4: //dia
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Dia:\%02d            ", day);
-      if(TECLA_SET)
+      printf(mostra,"Dia:\%02d                ", day);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 5;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         day++;
         if(day > 31)
           day = 1;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         day--;
         if(day < 1)
           day = 31;
@@ -249,15 +269,15 @@ configure_time() {
     case 5: //mes
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Mes:\%02d            ", month);
-      if(TECLA_SET)
+      printf(mostra,"Mes:\%02d                ", month);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 6;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         month++;
         if(month > 12)
           month = 1;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         month--;
         if(month < 1)
           month = 12;
@@ -266,15 +286,15 @@ configure_time() {
     case 6: //ano
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
-      printf(mostra,"Ano:\%02d            ", yr);
-      if(TECLA_SET)
+      printf(mostra,"Ano:\%02d                ", yr);
+      if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
         state = 7;
-      else if(TECLA_MAIS){
+      else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         yr++;
         if(yr > 30)
           yr = 0;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         yr--;
         if(yr < 1)
           yr = 30;
@@ -286,12 +306,12 @@ configure_time() {
       display(0,0xC0);
       //printf(mostra,"\f\%02d/\%02d/\%02d\r\n",day,month,yr); 
       printf(mostra,"Salvar? - NAO, + SIM"); 
-      if(TECLA_MAIS){
+      if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
         ds1307_set_date_time(day,month,yr,dow,hrs,min,sec);
         tela = 0;
         state = 0;
       }
-      else if(TECLA_MENOS){
+      else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
         state = 0;
         tela = 0;
       }
@@ -314,28 +334,100 @@ configure_temperature() {
   printf(mostra,"Temp Max: \%02d             ", temperatura_maxima); 
 
   switch(state){
-  case 0: //menu superior
-    if(TECLA_SET)
-      state = 1;
-    else if(TECLA_MAIS)
-      tela = 2;
-    else if(TECLA_MENOS)
-      tela = 0;
-    break;
+  // case 0: //menu superior
+  //   if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
+  //     state = 1;
+  //   // else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status)
+  //   //   tela = 2;
+  //   // else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status)
+  //   //   tela = 0;
+  //   break;
 
-  case 1: //temperatura maxima
-    if(TECLA_SET)
-      state = 0;
-    else if(TECLA_MAIS){
+  case 0: //temperatura maxima
+    if(tecla_set_status && !tecla_menos_status && !tecla_mais_status)
+      tela = 0;//state = 0;
+    else if(tecla_mais_status && !tecla_menos_status && !tecla_set_status){
       temperatura_maxima++;
       if(temperatura_maxima > 100)
         temperatura_maxima = 0;
     }
-    else if(TECLA_MENOS){
+    else if(tecla_menos_status && !tecla_set_status && !tecla_mais_status){
       temperatura_maxima--;
       if(temperatura_maxima < 1)
         temperatura_maxima = 100;
     }
     break;
+  }
+}
+
+verifica_teclas() {
+
+  if(TECLA_SET){
+    if(tecla_set_tempo == DEBOUNCE){
+      tecla_set_status = true;
+      tecla_set_state = true;
+    }    
+  } else {
+    if(!tecla_set_state){      
+      tecla_set_tempo = DEBOUNCE;
+    }
+  }
+
+  if(tecla_set_state){
+    if(tecla_set_tempo > 1){
+      tecla_set_tempo--;
+    } else {
+      tecla_set_tempo = 0;
+    }
+    if(tecla_set_tempo < 1){
+      tecla_set_status = false;
+      tecla_set_state = false;
+    }
+  }
+
+  if(TECLA_MAIS){
+    if(tecla_mais_tempo == DEBOUNCE){
+      tecla_mais_status = true;
+      tecla_mais_state = true;
+    }    
+  } else {
+    if(!tecla_mais_state){      
+      tecla_mais_tempo = DEBOUNCE;
+    }
+  }
+
+  if(tecla_mais_state){
+    if(tecla_mais_tempo > 1){
+      tecla_mais_tempo--;
+    } else {
+      tecla_mais_tempo = 0;
+    }
+    if(tecla_mais_tempo < 1){
+      tecla_mais_status = false;
+      tecla_mais_state = false;
+    }
+  }
+
+  if(TECLA_MENOS){
+    if(tecla_menos_tempo == DEBOUNCE){
+      tecla_menos_status = true;
+      tecla_menos_state = true;
+    }    
+  } else {
+    if(!tecla_menos_state){      
+      tecla_menos_tempo = DEBOUNCE;
+    }
+  }
+
+  if(tecla_menos_state){
+    if(tecla_menos_tempo > 1){
+      tecla_menos_tempo--;
+    } else {
+      tecla_menos_tempo = 0;
+    }
+    if(tecla_menos_tempo < 1){
+      tecla_menos_status = false;
+      tecla_menos_state = false;
+    }
   }
 }
